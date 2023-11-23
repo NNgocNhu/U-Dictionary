@@ -120,38 +120,10 @@ const styles = StyleSheet.create({
     height: 150,
     borderWidth: 2,
     borderColor: '#81BEE0',
-    borderRadius: 20,
-    marginBottom: 30,
-    backgroundColor: '#2D2D2D',
+    borderRadius: '20px'
   },
-  input:{
-    width:260,
-    height: 55,
-    color: '#13597E',
-    fontFamily: 'SVN-Gilroy',
-    fontSize:30,
-    fontWeight:300,
-    textAlign: 'left',
-    marginTop: 60,
-    marginLeft: 16
-  },
-  uDiction:{
-    width: 170,
-    height: 170,
-    borderRadius: 10,
-    backgroundColor: '#2D2D2D',
-    justifyContent: 'center',
-    marginRight: 10,
-    flexDirection: 'column'
-  },
-  subUDiction:{
-    width: 170,
-    height: 50,
-    borderRadius: 10,
-    backgroundColor: '#2D2D2D',
-    justifyContent: 'center',
-    marginBottom: 10,
-    flexDirection: 'row'
+  options:{
+
   },
 });
 export default Home;
