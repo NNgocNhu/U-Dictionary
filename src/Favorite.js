@@ -24,21 +24,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },  
   text1:{
-    width:'180px',
-    height: '45px',
+    width:180,
+    height: 45,
     fontFamily:'SVN-Gilroy',
     fontSize:30,
     fontWeight:700,
     color:'#fff',
     textAlign: 'left',
-    marginBottom: '20px'
+    marginBottom: 20
   },
   translate:{
-    width: '370px',
-    height: '150px',
-    borderWidth: '2px',
+    width: 370,
+    height: 150,
+    borderWidth: 2,
     borderColor: '#81BEE0',
-    borderRadius: '20px'
+    borderRadius: 20
   },
   options:{
 
