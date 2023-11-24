@@ -1,14 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import { Image, TouchableOpacity } from 'react-native';
 import Home from './src/Home';
 import More from './src/More';
-import PhatHien from './src/PhatHien';
+import Discover from './src/Discover';
 import Favorite from './src/Favorite';
-<<<<<<< HEAD
 import Define from './src/Define';
+import QuoteToday from './src/QuoteToday';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,7 +35,6 @@ const handleSharePress = async () => {
   }
 };
 const HomeStack = () => {
-  
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -70,19 +68,28 @@ const HomeStack = () => {
           ),
         })}
       />
+      
     </Stack.Navigator>
   );
 };
-
-=======
-import { Image } from 'react-native';
-import QuoteToday_Screen from './src/QuoteToday_Screen';
-const Tab = createBottomTabNavigator();
->>>>>>> 4c5da9a5706840ad640c577222e8bf04b6324a70
-
+const DiscoverStack = () => {
+  return(
+    <Stack.Navigator>
+     <Stack.Screen
+    name="Discover"
+    component={Discover}
+    options={{ headerShown: false }}
+    />
+    <Stack.Screen
+    name="QuoteToday"
+    component={QuoteToday}
+    options={{ headerShown: false }}
+    />
+  </Stack.Navigator>
+  )
+}
 export default function App() {
   return (
-    // <QuoteToday_Screen/>
     <NavigationContainer>
       <Tab.Navigator
          screenOptions={{
@@ -102,7 +109,7 @@ export default function App() {
             />
           ),
         }}/> 
-        <Tab.Screen name ='Discover' component={PhatHien} options={{
+        <Tab.Screen name ='Discover' component={DiscoverStack} options={{
           headerShown: false, 
           tabBarLabel: 'Discover',
           tabBarIcon: ({ color, size }) => (

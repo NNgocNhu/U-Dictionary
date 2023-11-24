@@ -39,7 +39,7 @@ function Favorite({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex:1,
-    backgroundColor: '#000',
+    backgroundColor: '#0d0d0d',
     alignItems: 'center',
     justifyContent: 'center',
   },  
