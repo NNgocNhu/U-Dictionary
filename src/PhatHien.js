@@ -3,16 +3,16 @@ import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Pressable,Scro
 import React, { useState } from 'react';
 import  { useRef } from 'react';
 const COLORS = {
-  January: '#FF5733',
+  January: '#4169E1',
   February: '#33FF57',
   March: '#5733FF',
   April: '#FF3366',
-  May: '#33FFCC',
+  May: '#FF1493',
   June: '#FFD700',
-  July: '#7CFC00',
+  July: '#33FFCC',
   August: '#8A2BE2',
   September: '#FF1493',
-  October: '#4169E1',
+  October: '#7CFC00',
   November: '#32CD32',
   December: '#FF4500',
 };
@@ -79,27 +79,23 @@ const DATA = [
     color: COLORS.December,
   },
 ];
+
 const dataVideo = [
   {
     id: '1',
-    image: require('../image/image 1.png'),
+    image: require('../image/image1.png'),
     text1: 'Word: Achievement',
     text2: 'Video',
     text3: '17 Nov',
   },
   {
     id: '2',
-    image: require('../image/image 2.png'),
+    image: require('../image/image2.png'),
     text1: 'Word: Affable',
     text2: 'Video',
     text3: '16 Nov',
   },
 ];
-const IMAGES = [
-  require('../image/TroChoiOChu.jpg'),
-  require('../image/TroChoiOChu.jpg'),
-];
-
 const Item = ({ title, backgroundColor }) => (
   <View style={{  flexDirection: 'row', justifyContent: 'center',marginRight:10 }}>
     <View style={{ width: 72, height: 85, backgroundColor, flexDirection: 'column', padding: 10 }}>
@@ -120,90 +116,61 @@ const Item = ({ title, backgroundColor }) => (
     </View>
   </View>
 );
-
-const ItemT = ({ uri, opacity }) => (
-  <View>
-    <Image style={styles.img1} source={uri} />
-    <Animated.View style={[styles.overlay, { opacity }]} />
-  </View>
-);
 const ItemVideo = ({ item }) => (
-  <View style={{ flexDirection: 'row', justifyContent: 'center', marginRight: 10 }}>
+  <View style={{ flexDirection: 'column', justifyContent: 'space-around',marginHorizontal:10 }}>
     <View style={{ flex: 2 }}>
-      <Image source={item.image} style={{ width: '100%', height: '100%', resizeMode: 'cover' }} />
+      <Image source = {{ uri: item.image }} style={{ width: 149, height: 85, resizeMode: 'contain' }} />
     </View>
     <View style={{ flex: 1 }}>
-      <Text>{item.text1}</Text>
-      <Text>{item.text2}</Text>
-      <Text>{item.text3}</Text>
+      <Text style={styles.text5}>{item.text1}</Text>
+      <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+        <Text style={styles.text6}>{item.text2}</Text>
+        <Text style={styles.text6}>{item.text3}</Text>
+      </View>
     </View>
   </View>
 );
 function PhatHien({navigation}) {
-  const scrollX = useRef(new Animated.Value(0)).current;
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // const getItemLayout = (_, index) => ({
-  //   length: 304,
-  //   offset: 304 * index,
-  //   index,
-  // });
-  const handleOpacityPress = () => {
-    setCurrentImageIndex(currentImageIndex === 0 ? 1 : 0);
-  };
+  
   return (
   <ScrollView>
   <View style={styles.container}>
-    <View style={{flex:1,flexDirection:'row'}}>
+    <View style={{flex:1}}>
       <Text style={styles.text1}>Phát hiện</Text>
     </View>
-    <View style={{ flex: 2, marginTop: 25, height: 193, marginHorizontal: 27 }}>
-          <Text style={[styles.text2, { marginLeft: 10 }]}>Trò chơi ô chữ </Text>
-          <FlatList
-            data={IMAGES}
-            renderItem={({ item }) => (
-              <ItemT uri={item} opacity={currentImageIndex === 0 ? 1 : 0} />
-            )}
-            keyExtractor={(item, index) => index.toString()}
-            horizontal
-            pagingEnabled
-            onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-              { useNativeDriver: false }
-            )}
-            // getItemLayout={getItemLayout}
-          />
-          <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            {/* Nút opacity cho hình ảnh thứ nhất */}
-            <TouchableOpacity
-              style={{ height: 10, width: 10, borderRadius: 6, marginHorizontal: 10, backgroundColor: '#fff' }}
-              onPress={handleOpacityPress}
-            ></TouchableOpacity>
-            {/* Nút opacity cho hình ảnh thứ hai */}
-            <TouchableOpacity
-              style={{ height: 10, width: 10, borderRadius: 6, backgroundColor: '#fff' }}
-              onPress={handleOpacityPress}
-            ></TouchableOpacity>
-          </View>
-        </View>
-    <View style={{flex:2,marginTop:25,height:154}}>
+    <View style={{ flex: 3, height: 193}}>
+      <Text style={styles.text2}>Trò chơi ô chữ </Text>
+      <Image style={styles.img1} source={require('../image/TroChoiOChu.jpg')}/>
+    </View>
+    <View style={{flex:3,height:154,marginTop:45}}>
       <Text style={styles.text2}>Trích dẫn hôm nay</Text>
-      <Image style={styles.img2} source={require('../image/TrichDanHomNay.jpg')}/>
+      <Pressable style={{width: 314,height: 107}}
+        onPress={() => {
+          navigation.navigate('')
+      }}>
+        <Image style={styles.img2} source={require('../image/TrichDanHomNay.jpg')}/>
+      </Pressable>
+      
     </View>
-    <View style={{flex:2,marginTop:10,height:145}}>
-      <View style={{flexDirection:'row',justifyContent:'flex-start',marginLeft:35}}>
-          <Text style={styles.text2}>Kiểm tra chính tả</Text>
+       
+    <View style={{flex:3,height:145,marginTop:10}}>
+      <View style={{alignItems:'center'}}>
+        <Text style={[styles.text2,{paddingRight:150}]}>Kiểm tra chính tả</Text>
       </View>
-      <FlatList
-        style={{marginLeft:35}}
-        horizontal
-        data={DATA}
-        renderItem={({ item }) => <Item title={item.title} backgroundColor={item.color} />}
-        keyExtractor={(item) => item.id}
-      />
+      <View style={{ paddingHorizontal:10 }}>
+    <FlatList
+      horizontal
+      data={DATA}
+      style={{ width: 310 }}
+      contentContainerStyle={{ alignItems: 'center' }}
+      showsHorizontalScrollIndicator={false}
+      renderItem={({ item }) => <Item title={item.title} backgroundColor={item.color} />}
+      keyExtractor={(item) => item.id}
+    />
+  </View>
     </View>
-    <View style={{flex:2,height:180}}>
-      <Text style={styles.text2}>Góc tiếng anh </Text>
+    <View style={{flex:4}}>
+      <Text style={[styles.text2,{marginLeft:12}]}>Góc tiếng anh </Text>
       <FlatList
       data={dataVideo}
       renderItem={({ item }) => <ItemVideo item={item} />}
@@ -212,26 +179,6 @@ function PhatHien({navigation}) {
       showsHorizontalScrollIndicator={false}
      />
     </View>
-    <View style={{flex:1,flexDirection:'row',justifyContent:'space-around'}}>
-      <View style={{ flex: 2 }}>
-        <Image source={require('../image/image 1.png')} style={{ width: '100%', height: '100%', resizeMode: 'cover' }} />
-      <View style={{ flex: 1 }}>
-      </View>
-  </View>
-      <View style={{flex:1,backgroundColor:'#fff'}}>
-
-      </View>
-      <View style={{flex:1,backgroundColor:'#fff'}}>
-
-      </View>
-      <View style={{flex:1,backgroundColor:'#fff'}}>
-
-      </View>
-      <View style={{flex:1,backgroundColor:'#fff'}}>
-
-      </View>
-    </View>
-
   </View>
   </ScrollView>
 );
@@ -255,7 +202,7 @@ const styles = StyleSheet.create({
     fontSize:20,
     fontWeight:700,
     color:'#fff',
-    marginBottom:10
+    marginBottom:7,
   },
   text3:{
     color:'rgba(204, 204, 204, 0.80)',
@@ -269,10 +216,22 @@ const styles = StyleSheet.create({
     fontWeight:700,
     color:'#fff',
   },
+
+  text5:{
+    color:'rgba(251, 247, 247, 0.80)',
+    fontFamily: 'SVN-Gilroy',
+    fontSize:16,
+    fontWeight:700
+  },
+  text6:{
+    color:'#fff',
+    fontFamily: 'SVN-Gilroy',
+    fontSize:16,
+    fontWeight:300
+  },
   img1:{
     width: 304,
     height: 139,
-    marginLeft:10
   },
   img2:{
     width: 314,
