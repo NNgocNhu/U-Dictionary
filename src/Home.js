@@ -1,25 +1,38 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable, Animated, FlatList} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable, Animated, FlatList, TextInput} from 'react-native';
 import React, { useState } from 'react';
 import  { useRef } from 'react';
 
 function Home({navigation}) {
+    const goToDefineScreen = () => {
+        navigation.navigate('Define', { textInputValue: text }); 
+    };
+    const [text, onChangeText] = React.useState('');
+
   return (
   <View style={styles.container}>
     <View>
       <Text style={styles.text1}>U-Dictionary</Text>
     </View>
-    <Pressable style={styles.translate}>
-        <Pressable>
+    <Pressable style={styles.translate} onPress={goToDefineScreen}>
+        <Pressable >
             <Pressable style={{flex:1, flexDirection:'row', alignContent: 'center'}}>
-                <Text style={styles.input}>Nhập ký tự</Text>
+                <TextInput 
+                    style={styles.input}
+                    onChangeText={onChangeText}
+                    value={text}
+                    placeholder="Nhập ký tự"
+                    editable
+                    multiline={true}
+                    maxLength={30}
+                    onSubmitEditing={goToDefineScreen}/>
                 <Image
                     source={require('../image/audio.png')}
-                    style={{ width: 17, height: 17}}
+                    style={{ width: 25, height: 25, marginHorizontal: 'auto', marginVertical: 'auto'}}
                 />
             </Pressable>
         </Pressable>
     </Pressable>
-    <View style={{flex:1, flexDirection:'row', alignContent: 'center'}}>
+    <View style={{flex:1, flexDirection:'row', alignContent: 'space-between'}}>
         <Pressable style={{flex:1, flexDirection:'row'}}>
             <Pressable style={styles.uDiction}>
                 <Image
@@ -120,10 +133,38 @@ const styles = StyleSheet.create({
     height: 150,
     borderWidth: 2,
     borderColor: '#81BEE0',
-    borderRadius: '20px'
+    borderRadius: 20,
+    marginBottom: 10
   },
-  options:{
+  input:{
+    width: 300,
+    height: 110,
+    fontFamily:'SVN-Gilroy',
+    fontSize:30,
+    fontWeight:300,
+    color:'#13597E',
+    textAlign: 'left',
+    padding: 10,
+    outlineColor: 'transparent',
+    outlineStyle: 'none'
+  },
+  uDiction:{
+    width: 170,
+    height: 170,
+    borderWidth: 2,
+    backgroundColor: '#2D2D2D',
+    borderRadius: 10,
+    marginRight: 10
+  },
+  subUDiction:{
+    width: 170,
+    height: 50,
+    borderWidth: 2,
+    backgroundColor: '#2D2D2D',
+    borderRadius: 10,
+    marginBottom: 10,
+    flexDirection: 'row'
 
-  },
+  }
 });
 export default Home;
