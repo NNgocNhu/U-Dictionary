@@ -1,5 +1,4 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, TouchableOpacity } from 'react-native';
 import Home from './src/Home';
@@ -11,6 +10,7 @@ import QuoteToday from './src/QuoteToday';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
 const handleSharePress = async () => {
   try {
     const result = await Share.share({
@@ -72,6 +72,7 @@ const HomeStack = () => {
     </Stack.Navigator>
   );
 };
+
 const DiscoverStack = () => {
   return(
     <Stack.Navigator>
@@ -88,11 +89,13 @@ const DiscoverStack = () => {
   </Stack.Navigator>
   )
 }
+
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-         screenOptions={{
+      <Tab.Navigator 
+        screenOptions={{
           tabBarStyle: {
             backgroundColor: 'black', // Màu nền của thanh tab
           },
@@ -105,27 +108,29 @@ export default function App() {
           tabBarIcon: ({ color, size }) => (
             <Image
               source={require('./image/home-icon.png')}
-              style={{ width: 20, height: 20}}
+              style={{ width: '20px', height: '20px'}}
             />
           ),
         }}/> 
         <Tab.Screen name ='Discover' component={DiscoverStack} options={{
+
+        }}/>
+        <Tab.Screen name ='Discover' component={PhatHien} options={{
           headerShown: false, 
           tabBarLabel: 'Discover',
           tabBarIcon: ({ color, size }) => (
             <Image
               source={require('./image/compass-icon.png')}
-              style={{ width: 20, height: 20}}
+              style={{ width: '20px', height: '20px'}}
             />
           )}}/>
-   
-         <Tab.Screen name='Favorite' component={Favorite} options={{
+        <Tab.Screen name='Favorite' component={Favorite} options={{
           headerShown: false, 
           tabBarLabel: 'Favorite',
           tabBarIcon: ({ color, size }) => (
             <Image
               source={require('./image/1star.png')}
-              style={{ width: 20, height: 20}}
+              style={{ width: '20px', height: '20px'}}
             />
           )}}/>
         <Tab.Screen name='More' component={More} options={{
@@ -134,10 +139,9 @@ export default function App() {
           tabBarIcon: ({ color, size }) => (
             <Image
               source={require('./image/menu.png')}
-              style={{ width: 20, height: 20}}
+              style={{ width: '20px', height: '20px'}}
             />
           )}}/>
-
       </Tab.Navigator>
     </NavigationContainer>
 

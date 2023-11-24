@@ -6,8 +6,18 @@ function Home({navigation}) {
     const goToDefineScreen = () => {
         navigation.navigate('Define', { textInputValue: text }); 
     };
-    const [text, onChangeText] = React.useState('');
+    const [textInputValue, setTextInputValue] = useState('');
 
+    const handleTextChange = (text) => {
+        // Kiểm tra xem text nhập vào có chứa ký tự xuống dòng hay không
+        if (text.includes('\n')) {
+        navigation.navigate('Define', { textInputValue: textInputValue });
+        // Reset giá trị của TextInput sau khi chuyển màn hình (nếu cần)
+        setTextInputValue('');
+        } else {
+        setTextInputValue(text);
+        }
+    };
   return (
   <View style={styles.container}>
     <View>
@@ -18,12 +28,12 @@ function Home({navigation}) {
             <Pressable style={{flex:1, flexDirection:'row', alignContent: 'center'}}>
                 <TextInput 
                     style={styles.input}
-                    onChangeText={onChangeText}
-                    value={text}
                     placeholder="Nhập ký tự"
                     editable
+                    value={textInputValue}
                     multiline={true}
-                    maxLength={30}
+                    onChangeText={handleTextChange}
+                    maxLength={100}
                     onSubmitEditing={goToDefineScreen}/>
                 <Image
                     source={require('../image/audio.png')}

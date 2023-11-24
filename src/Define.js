@@ -1,43 +1,74 @@
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Pressable, Animated, FlatList, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions } from 'react-native';
 import React, { useState } from 'react';
-import  { useRef } from 'react';
 import { ScrollView } from 'react-native-web';
 
-function Search({navigation, route}) {
+const Concise = () => (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {/* Nội dung cho Tab 1 */}
+    </View>
+);
+  
+const Collin = () => (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {/* Nội dung cho Tab 2 */}
+    </View>
+);
+  
+const Wordnet = () => (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {/* Nội dung cho Tab 3 */}
+    </View>
+);
+
+const initialLayout = { width: Dimensions.get('window').width };
+
+function Define({navigation, route}) {
     const { textInputValue } = route.params || {}; // Lấy giá trị từ route.params
 
-    const handleSharePress = async () => {
-        try {
-          const result = await Share.share({
-            message: 'Nội dung bạn muốn chia sẻ', // Thông điệp bạn muốn chia sẻ
-            url: 'URL hoặc đường dẫn', // URL nếu có
-          });
-    
-          if (result.action === Share.sharedAction) {
-            if (result.activityType) {
-              // Chia sẻ thành công
-              console.log(`Chia sẻ thành công qua ${result.activityType}`);
-            } else {
-              // Chia sẻ thành công
-              console.log('Chia sẻ thành công');
-            }
-          } else if (result.action === Share.dismissedAction) {
-            // Đóng chia sẻ
-            console.log('Chia sẻ bị hủy');
-          }
-        } catch (error) {
-          console.error('Lỗi khi chia sẻ:', error.message);
-        }
-    };
+    const [index, setIndex] = React.useState(0);
+
+    const [routes] = React.useState([
+        { key: 'first', title: 'Concise' },
+        { key: 'second', title: 'Collin' },
+        { key: 'third', title: 'Wordnet' },
+    ]);
+
+    const renderScene = SceneMap({
+        first: Concise,
+        second: Collin,
+        third: Wordnet,
+    });
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Pressable style={styles.input}>
-            <TextInput
-                value={textInputValue}
-                editable={true}
-                style={styles.textInput}
-            />
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        value={textInputValue}
+                        editable={true}
+                        style={styles.textInput}
+                    />
+                    <Image
+                        style={styles.cancel}
+                        source={require('../image/cancel.png')}
+                    />
+                </View>
             </Pressable>
+            <TabView
+                navigationState={{ index, routes }}
+                renderScene={renderScene}
+                onIndexChange={setIndex}
+                initialLayout={initialLayout}
+                renderTabBar={(props) => (
+                    <TabBar
+                        {...props}
+                        indicatorStyle={{ backgroundColor: '#C2392F' }}
+                        style={{ backgroundColor: 'black' }}
+                        activeColor={'white'}
+                        inactiveColor={'black'}
+                    />
+                )}
+            />
         </ScrollView>
     );
 }
@@ -50,17 +81,33 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
     },  
     input:{
-        width: 350,
+        width: 370,
         height: 50,
         borderRadius: 10,
         backgroundColor: '#2D2D2D',
-        
+        flexDirection: 'row',
+        margin: 10,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    inputContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flex: 1,
+        padding: 10
     },
     textInput:{
       fontFamily:'SVN-Gilroy',
       fontSize:17,
       fontWeight:300,
-      color:'#909090'
+      color:'#909090',
+      marginLeft: 5
+    },
+    cancel:{
+      width: 17,
+      height: 17,
+      
     },
     text1:{
       width:180,
@@ -92,4 +139,4 @@ const styles = StyleSheet.create({
   
     },
   });
-export default Search;
+export default Define;
