@@ -1,0 +1,187 @@
+{
+  "terms": {
+    "snowman": {
+      "english": "snowman",
+      "vietnamese": {
+        "concise": {
+          "type": [
+            {
+              "type": "n",
+              "definition": "người tuyết được nắn; người tuyết"
+            },
+            {
+              "type": "pl",
+              "definition": "snowman"
+            }
+          ],
+          "phrase": ["make a snowman", "abominable snowman"],
+          "source": "wikipedia"
+        },
+        "collin": [{
+          "type": "N-COUNT",
+          "definition": "A snowman is a large shape which is made out of snow, especially by children, and is supposed to look like a person."
+        }],
+        "wordnet":[{
+          "type": "n",
+          "definition": "a figure of a person made of packed snow"
+        }]
+      },
+      "pronunciation": {
+        "US": "/ˈsnoʊ.mæn/",
+        "UK": "/ˈsnəʊ.mæn/"
+      }
+    },
+    "station": {
+      "english": "station",
+      "vietnamese": {
+        "concise": {
+          "type": [
+            {
+              "type": "n",
+              "definition": "nhà ga; trạm, đồn, đài; địa vị, chức;"
+            },
+            {
+              "type": "vt",
+              "definition": "đặt vào vị trí; đóng (quân) nơi nào đó;"
+            }
+          ],
+          "phrase": ["power station", "railway station"],
+          "source": "wikipedia"
+        },
+        "collin": [
+          {
+            "type": "N-COUNT",
+            "definition": "A station or a train station is a building by a railway track where trains stop so that people can get on or off."
+          },
+          {
+            "type": "N-COUNT",
+            "definition": "A bus station is a building, usually in a town or city, where buses stop, usually for a while, so that people can get on or off."
+          }
+        ],
+        "wordnet":[
+          {
+            "type": "n",
+            "definition": ["a facility equipped with special equipment and personnel for a particular purpose", "proper or designated social situation"]
+          },
+          {
+            "type": "v",
+            "definition": "assign to a station"
+          }
+        ]
+      },
+      "pronunciation": {
+        "US": "/ˈsteɪ.ʃn/",
+        "UK": "/ˈsteɪ.ʃn/"
+      }
+    },
+    "book": {
+      "english": "book",
+      "vietnamese": {
+        "concise": {
+          "type": [
+            {
+              "type": "n",
+              "definition": "sách; vở, sổ; sổ sách kế toán;"
+            },
+            {
+              "type": "vt",
+              "definition": "đặt chỗ trước, mua vé trước; ghi tên; ghi vào vở; ghi địa chỉ (để chuyển hàng);"
+            }
+          ],
+          "phrase": ["in the book", "book on", "book in"],
+          "source": "wikipedia"
+        },
+        "collin": [
+          {
+            "type": "N-COUNT",
+            "definition": "A book is a number of pieces of paper, usually with words printed on them, which are fastened together and fixed inside a cover of stronger paper or cardboard. Books contain information, stories, or poetry, for example."
+          },
+          {
+            "type": "N-COUNT",
+            "definition": "A book of something such as stamps, matches, or tickets is a small number of them fastened together between thin cardboard covers."
+          }
+        ],
+        "wordnet":[
+          {
+            "type": "n",
+            "definition": ["a written work or composition that has been published (printed on pages bound together", "physical objects consisting of a number of pages bound together"]
+          },
+          {
+            "type": "v",
+            "definition": ["record a charge in a police register", "engage for a performance"]
+          }
+        ]
+      },
+      "pronunciation": {
+        "US": "/bʊk/",
+        "UK": "/bʊk/"
+      }
+    },
+    "apple": {
+      "english": "apple",
+      "vietnamese": {
+        "concise": {
+          "type": [
+            {
+              "type": "n",
+              "definition": "quả táo, trái táo;"
+            },
+            {
+              "type": "pl",
+              "definition": "apples"
+            }
+          ],
+          "phrase": ["an apple", "apple tree"],
+          "source": "wikipedia"
+        },
+        "collin": [{
+          "type": "N-VAR",
+          "definition": "An apple is a round fruit with smooth green, yellow, or red skin and firm white flesh."
+        }],
+        "wordnet":[{
+          "type": "n",
+          "definition": "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh."
+        }]
+      },
+      "pronunciation": {
+        "US": "/ˈæp.əl/",
+        "UK": "/ˈæp.əl/"
+      }
+    },
+    "car": {
+      "english": "car",
+      "vietnamese": {
+        "concise": {
+          "type": [
+            {
+              "type": "n",
+              "definition": "xe ô tô, xe hơi; khoang chở hàng, toa xe lửa; khoang hành khách (trên máy bay)"
+            }
+          ],
+          "phrase": ["by car", "car accident"],
+          "source": "wikipedia"
+        },
+        "collin": [
+          {
+            "type": "N-COUNT",
+            "definition": "A car is a motor vehicle with room for a small number of passengers."
+          },
+          {
+            "type": "N-COUNT",
+            "definition": "A car is one of the separate sections of a train."
+          }
+        ],
+        "wordnet":[
+          {
+            "type": "n",
+            "definition": ["a motor vehicle with four wheels, usually propelled by an internal combustion engine", "a wheeled vehicle adapted to the rails or railroad"]
+          }
+        ]
+      },
+      "pronunciation": {
+        "US": "/kɑː(r)/",
+        "UK": "/kɑːr/"
+      }
+    }
+  }
+}

@@ -36,8 +36,9 @@ function Home({navigation}) {
                     maxLength={100}
                     onSubmitEditing={goToDefineScreen}/>
                 <Image
-                    source={require('../image/audio.png')}
+                    source={require('../image/search.png')}
                     style={{ width: 25, height: 25, marginHorizontal: 'auto', marginVertical: 'auto'}}
+                    onPress={goToDefineScreen}
                 />
             </Pressable>
         </Pressable>
