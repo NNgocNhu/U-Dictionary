@@ -1,11 +1,18 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native-web';
-import {SceneMap, TabView, TabBar} 'react-native-pager-view';
+import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
 
-const Concise = () => (
+const initialLayout = { width: Dimensions.get('window').width };
+
+function Define({navigation, route}) {
+    const { textInputValue } = route.params || {};
+
+    const [index, setIndex] = React.useState(0);
+
+    const Concise = () => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {/* Nội dung cho Tab 1 */}
+      
     </View>
 );
   
@@ -20,13 +27,6 @@ const Wordnet = () => (
       {/* Nội dung cho Tab 3 */}
     </View>
 );
-
-const initialLayout = { width: Dimensions.get('window').width };
-
-function Define({navigation, route}) {
-    const { textInputValue } = route.params || {}; // Lấy giá trị từ route.params
-
-    const [index, setIndex] = React.useState(0);
 
     const [routes] = React.useState([
         { key: 'first', title: 'Concise' },
@@ -55,6 +55,15 @@ function Define({navigation, route}) {
                     />
                 </View>
             </Pressable>
+            <View style = {{flex: 1, flexDirection: 'row', alignContent: 'space-around'}}>
+              <Text style={styles.word}>{textInputValue}</Text>
+              <TouchableOpacity>
+                <Image
+                  source={require('../image/star0.png')}
+                  style={{ width: 18, height: 18, marginHorizontal: 'auto', marginVertical: 'auto'}}
+                />
+              </TouchableOpacity>
+            </View>
             <TabView
                 navigationState={{ index, routes }}
                 renderScene={renderScene}
@@ -97,6 +106,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         padding: 10
+    },
+    word:{
+      fontFamily:'SVN-Gilroy',
+      fontSize:35,
+      fontWeight:700,
+      color:'#C8C8C8',
+      marginLeft: 5
     },
     textInput:{
       fontFamily:'SVN-Gilroy',
