@@ -14,17 +14,24 @@
               "definition": "snowman"
             }
           ],
-          "phrase": ["make a snowman", "abominable snowman"],
+          "phrase": [
+            "make a snowman",
+            "abominable snowman"
+          ],
           "source": "wikipedia"
         },
-        "collin": [{
-          "type": "N-COUNT",
-          "definition": "A snowman is a large shape which is made out of snow, especially by children, and is supposed to look like a person."
-        }],
-        "wordnet":[{
-          "type": "n",
-          "definition": "a figure of a person made of packed snow"
-        }]
+        "collin": [
+          {
+            "type": "N-COUNT",
+            "definition": "A snowman is a large shape which is made out of snow, especially by children, and is supposed to look like a person."
+          }
+        ],
+        "wordnet": [
+          {
+            "type": "n",
+            "definition": "a figure of a person made of packed snow"
+          }
+        ]
       },
       "pronunciation": {
         "US": "/ˈsnoʊ.mæn/",
@@ -45,7 +52,10 @@
               "definition": "đặt vào vị trí; đóng (quân) nơi nào đó;"
             }
           ],
-          "phrase": ["power station", "railway station"],
+          "phrase": [
+            "power station",
+            "railway station"
+          ],
           "source": "wikipedia"
         },
         "collin": [
@@ -58,10 +68,13 @@
             "definition": "A bus station is a building, usually in a town or city, where buses stop, usually for a while, so that people can get on or off."
           }
         ],
-        "wordnet":[
+        "wordnet": [
           {
             "type": "n",
-            "definition": ["a facility equipped with special equipment and personnel for a particular purpose", "proper or designated social situation"]
+            "definition": [
+              "a facility equipped with special equipment and personnel for a particular purpose",
+              "proper or designated social situation"
+            ]
           },
           {
             "type": "v",
@@ -88,7 +101,11 @@
               "definition": "đặt chỗ trước, mua vé trước; ghi tên; ghi vào vở; ghi địa chỉ (để chuyển hàng);"
             }
           ],
-          "phrase": ["in the book", "book on", "book in"],
+          "phrase": [
+            "in the book",
+            "book on",
+            "book in"
+          ],
           "source": "wikipedia"
         },
         "collin": [
@@ -101,14 +118,20 @@
             "definition": "A book of something such as stamps, matches, or tickets is a small number of them fastened together between thin cardboard covers."
           }
         ],
-        "wordnet":[
+        "wordnet": [
           {
             "type": "n",
-            "definition": ["a written work or composition that has been published (printed on pages bound together", "physical objects consisting of a number of pages bound together"]
+            "definition": [
+              "a written work or composition that has been published (printed on pages bound together",
+              "physical objects consisting of a number of pages bound together"
+            ]
           },
           {
             "type": "v",
-            "definition": ["record a charge in a police register", "engage for a performance"]
+            "definition": [
+              "record a charge in a police register",
+              "engage for a performance"
+            ]
           }
         ]
       },
@@ -131,17 +154,24 @@
               "definition": "apples"
             }
           ],
-          "phrase": ["an apple", "apple tree"],
+          "phrase": [
+            "an apple",
+            "apple tree"
+          ],
           "source": "wikipedia"
         },
-        "collin": [{
-          "type": "N-VAR",
-          "definition": "An apple is a round fruit with smooth green, yellow, or red skin and firm white flesh."
-        }],
-        "wordnet":[{
-          "type": "n",
-          "definition": "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh."
-        }]
+        "collin": [
+          {
+            "type": "N-VAR",
+            "definition": "An apple is a round fruit with smooth green, yellow, or red skin and firm white flesh."
+          }
+        ],
+        "wordnet": [
+          {
+            "type": "n",
+            "definition": "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh."
+          }
+        ]
       },
       "pronunciation": {
         "US": "/ˈæp.əl/",
@@ -158,7 +188,10 @@
               "definition": "xe ô tô, xe hơi; khoang chở hàng, toa xe lửa; khoang hành khách (trên máy bay)"
             }
           ],
-          "phrase": ["by car", "car accident"],
+          "phrase": [
+            "by car",
+            "car accident"
+          ],
           "source": "wikipedia"
         },
         "collin": [
@@ -171,10 +204,13 @@
             "definition": "A car is one of the separate sections of a train."
           }
         ],
-        "wordnet":[
+        "wordnet": [
           {
             "type": "n",
-            "definition": ["a motor vehicle with four wheels, usually propelled by an internal combustion engine", "a wheeled vehicle adapted to the rails or railroad"]
+            "definition": [
+              "a motor vehicle with four wheels, usually propelled by an internal combustion engine",
+              "a wheeled vehicle adapted to the rails or railroad"
+            ]
           }
         ]
       },

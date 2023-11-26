@@ -1,10 +1,41 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions } from 'react-native';
-import React, { useState } from 'react';
-import { ScrollView } from 'react-native-web';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useState ,useEffect} from 'react';
+import { ScrollView } from 'react-native';
+import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Concise = () => (
+const initialLayout = { width: Dimensions.get('window').width };
+
+function Define({navigation, route}) {
+  const [textInputValueF, setTextInputValue] = useState('');
+
+  const handleFavoritePress = async () => {
+    try {
+       // Lấy danh sách từ vựng đã yêu thích từ AsyncStorage
+       const favorites = await AsyncStorage.getItem('favorites');
+       let parsedFavorites = JSON.parse(favorites) || [];
+ 
+       // Thêm từ vựng hiện tại vào danh sách yêu thích
+       parsedFavorites.push({ id: Date.now(), term: textInputValue });
+       
+       // Lưu lại danh sách yêu thích mới vào AsyncStorage
+       await AsyncStorage.setItem('favorites', JSON.stringify(parsedFavorites));
+      console.log('Vocabulary added to favorites:', textInputValue);
+    } catch (error) {
+      console.error('Error handling favorite:', error);
+    }
+  };
+  const handleViewFavoritesPress = () => {
+    console.log('Navigating to FavoritesList');
+    navigation.navigate('FavoritesList');
+  };
+    const { textInputValue } = route.params || {};
+
+    const [index, setIndex] = React.useState(0);
+
+    const Concise = () => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {/* Nội dung cho Tab 1 */}
+      
     </View>
 );
   
@@ -19,13 +50,6 @@ const Wordnet = () => (
       {/* Nội dung cho Tab 3 */}
     </View>
 );
-
-const initialLayout = { width: Dimensions.get('window').width };
-
-function Define({navigation, route}) {
-    const { textInputValue } = route.params || {}; // Lấy giá trị từ route.params
-
-    const [index, setIndex] = React.useState(0);
 
     const [routes] = React.useState([
         { key: 'first', title: 'Concise' },
@@ -54,6 +78,16 @@ function Define({navigation, route}) {
                     />
                 </View>
             </Pressable>
+            <View style = {{flex: 1, flexDirection: 'row', alignContent: 'space-around'}}>
+              <Text style={styles.word}>{textInputValue}</Text>
+              <TouchableOpacity onPress={handleFavoritePress}>
+                <Image
+                  source={require('../image/star0.png')}
+                  style={{ width: 18, height: 18, marginHorizontal: 'auto', marginVertical: 'auto'}}
+                />
+              </TouchableOpacity>
+              
+            </View>
             <TabView
                 navigationState={{ index, routes }}
                 renderScene={renderScene}
@@ -96,6 +130,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         padding: 10
+    },
+    word:{
+      fontFamily:'SVN-Gilroy',
+      fontSize:35,
+      fontWeight:700,
+      color:'#C8C8C8',
+      marginLeft: 5
     },
     textInput:{
       fontFamily:'SVN-Gilroy',
