@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions } from 'react-native';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native-web';
+import {SceneMap, TabView, TabBar} 'react-native-pager-view';
 
 const Concise = () => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
