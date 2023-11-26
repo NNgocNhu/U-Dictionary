@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Pressable,ScrollView ,Linking , FlatList} from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, ScrollView ,Linking , FlatList} from 'react-native';
 import React from 'react';
 const COLORS = {
   January: '#4169E1',

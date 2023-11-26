@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet,ScrollView,View, Text,Image,Pressable,Platform  } from 'react-native';
+import { StyleSheet, ScrollView, View, Text,Image,Pressable, } from 'react-native';
 const data = [
   {
     id: '1',
