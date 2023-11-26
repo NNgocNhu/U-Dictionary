@@ -1,40 +1,5 @@
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity, Pressable, Animated, FlatList} from 'react-native';
-import React, { useState } from 'react';
-import  { useRef } from 'react';
-
-
-const DATA = [
-    {
-      id: '1',
-      title: 'Cài đặt',
-      icon: require('../image/setting.png'),
-    },
-    {
-      id: '2',
-      title: 'Xếp hạng',
-      icon: require('../image/like.png'),
-    },
-    {
-      id: '3',
-      title: 'Phản hồi',
-      icon: require('../image/info_white.png'),
-    },
-    {
-      id: '4',
-      title: 'Khảo sát sự hài lòng',
-      icon: require('../image/star-icon.png'),
-    },
-    {
-      id: '5',
-      title: 'Chia sẻ',
-      icon: require('../image/share.png'),
-    },
-    {
-      id: '6',
-      title: 'Chính sách Bảo mật',
-      icon: require('../image/book.png'),
-    }
-  ];
+import { StyleSheet, Text, View,Image,Pressable } from 'react-native';
+import React from 'react';
 
 function More({navigation}) {
 
@@ -45,25 +10,95 @@ function More({navigation}) {
       <Text style={styles.text2}>Nhiều tính năng hơn</Text>
     </View>
     <View style={styles.body} >
-    {DATA.map((item) => {
-        return ( 
-          <View key = { item.id } style={{flex:1,flexDirection:'row',height:60,width:350,marginVertical:20,justifyContent:'space-between'}}> 
-            <View style={{width:30,marginRight:10}}>
-              <Image style = {styles.image} 
-              source = {{ uri: item.icon }} />
-            </View>
-            <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
-              <Text style={styles.text3}>{item.title}</Text>
-            </View>
-            <View style={{width:40,marginTop:5}}>
-              <Image style={styles.image} source={require('../image/next.png')}/>
-            </View>
-            
-          </View>
-        
-        )
-        }) 
-      } 
+      <View style={{flex:1,flexDirection:'row',height:40,width:350,justifyContent:'space-between'}}> 
+        <View style={{width:30,marginRight:10}}>
+          <Image style = {styles.image} 
+          source = {require('../image/setting.png')} />
+        </View>
+        <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
+          <Text style={styles.text3}>Cài đặt</Text>
+        </View>
+        <Pressable style={{width:40,marginTop:5}}
+                    onPress={() => {
+              navigation.navigate('Setting')
+            }}>
+          <Image style={styles.image} source={require('../image/next.png')}/>
+        </Pressable>
+      </View>
+      <View style={{flex:1,flexDirection:'row',height:40,width:350,justifyContent:'space-between'}}> 
+        <View style={{width:30,marginRight:10}}>
+          <Image style = {styles.image} 
+          source = {require('../image/like.png')} />
+        </View>
+        <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
+          <Text style={styles.text3}>Xếp hạng</Text>
+        </View>
+        <Pressable style={{width:40,marginTop:5}}
+                    onPress={() => {
+              navigation.navigate('Setting')
+            }}>
+          <Image style={styles.image} source={require('../image/next.png')}/>
+        </Pressable>
+      </View>
+      <View style={{flex:1,flexDirection:'row',height:40,width:350,justifyContent:'space-between'}}> 
+        <View style={{width:30,marginRight:10}}>
+          <Image style = {styles.image} 
+          source = {require('../image/info_white.png')} />
+        </View>
+        <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
+          <Text style={styles.text3}>Phản hồi</Text>
+        </View>
+        <Pressable style={{width:40,marginTop:5}}
+                    onPress={() => {
+              navigation.navigate('Setting')
+            }}>
+          <Image style={styles.image} source={require('../image/next.png')}/>
+        </Pressable>
+      </View>
+      <View style={{flex:1,flexDirection:'row',height:40,width:350,justifyContent:'space-between'}}> 
+        <View style={{width:30,marginRight:10}}>
+          <Image style = {styles.image} 
+          source = {require('../image/star-icon.png')} />
+        </View>
+        <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
+          <Text style={styles.text3}>Khảo sát sự hài lòng</Text>
+        </View>
+        <Pressable style={{width:40,marginTop:5}}
+                    onPress={() => {
+              navigation.navigate('Setting')
+            }}>
+          <Image style={styles.image} source={require('../image/next.png')}/>
+        </Pressable>
+      </View>
+      <View style={{flex:1,flexDirection:'row',height:40,width:350,justifyContent:'space-between'}}> 
+        <View style={{width:30,marginRight:10}}>
+          <Image style = {styles.image} 
+          source = {require('../image/share.png')} />
+        </View>
+        <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
+          <Text style={styles.text3}>Chia sẻ</Text>
+        </View>
+        <Pressable style={{width:40,marginTop:5}}
+                    onPress={() => {
+              navigation.navigate('Setting')
+            }}>
+          <Image style={styles.image} source={require('../image/next.png')}/>
+        </Pressable>
+      </View><View style={{flex:1,flexDirection:'row',height:40,width:350,justifyContent:'space-between'}}> 
+        <View style={{width:30,marginRight:10}}>
+          <Image style = {styles.image} 
+          source = {require('../image/book.png')} />
+        </View>
+        <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
+          <Text style={styles.text3}>Chính sách Bảo mật</Text>
+        </View>
+        <Pressable style={{width:40,marginTop:5}}
+                    onPress={() => {
+              navigation.navigate('Setting')
+            }}>
+          <Image style={styles.image} source={require('../image/next.png')}/>
+        </Pressable>
+      </View>
     </View>
     <View style={{flex:3}}></View>
   </View>
@@ -73,8 +108,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0d0d0d',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    // alignItems: 'flex-start',
+    // justifyContent: 'flex-start',
   },  
   head:{
     flex:1.5,

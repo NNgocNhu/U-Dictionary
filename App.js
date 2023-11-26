@@ -1,8 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, TouchableOpacity } from 'react-native';
 import Home from './src/Home';
 import More from './src/More';
+import Setting from './src/Setting';
 import Discover from './src/Discover';
 import Favorite from './src/Favorite';
 import Define from './src/Define';
@@ -35,6 +37,7 @@ const handleSharePress = async () => {
   }
 };
 const HomeStack = () => {
+  
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -87,8 +90,28 @@ const DiscoverStack = () => {
     options={{ headerShown: false }}
     />
   </Stack.Navigator>
-  )
-}
+  );
+};
+
+const MoreStack = () => {
+   
+  return(
+    <Stack.Navigator>
+     
+    <Stack.Screen
+    name="More"
+    component={More}
+    options={{ headerShown: false }}
+    />
+    
+    <Stack.Screen
+    name="Setting"
+    component={Setting}
+    options={{ headerShown: false }}
+    />
+  </Stack.Navigator>
+  );
+};
 
 
 export default function App() {
@@ -113,9 +136,6 @@ export default function App() {
           ),
         }}/> 
         <Tab.Screen name ='Discover' component={DiscoverStack} options={{
-
-        }}/>
-        <Tab.Screen name ='Discover' component={PhatHien} options={{
           headerShown: false, 
           tabBarLabel: 'Discover',
           tabBarIcon: ({ color, size }) => (
@@ -133,7 +153,7 @@ export default function App() {
               style={{ width: '20px', height: '20px'}}
             />
           )}}/>
-        <Tab.Screen name='More' component={More} options={{
+        <Tab.Screen name='More' component={MoreStack} options={{
           headerShown: false, 
           tabBarLabel: 'More',
           tabBarIcon: ({ color, size }) => (
@@ -144,6 +164,5 @@ export default function App() {
           )}}/>
       </Tab.Navigator>
     </NavigationContainer>
-
   );
 }
