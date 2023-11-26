@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions } from 'react-native';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native-web';
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 
 const Concise = () => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

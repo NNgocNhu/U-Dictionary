@@ -1,12 +1,14 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, TouchableOpacity } from 'react-native';
 import Home from './src/Home';
 import More from './src/More';
-import PhatHien from './src/PhatHien';
+import Setting from './src/Setting';
+import Discover from './src/Discover';
 import Favorite from './src/Favorite';
 import Define from './src/Define';
+import QuoteToday from './src/QuoteToday';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -69,9 +71,48 @@ const HomeStack = () => {
           ),
         })}
       />
+      
     </Stack.Navigator>
   );
 };
+
+const DiscoverStack = () => {
+  return(
+    <Stack.Navigator>
+     <Stack.Screen
+    name="Discover"
+    component={Discover}
+    options={{ headerShown: false }}
+    />
+    <Stack.Screen
+    name="QuoteToday"
+    component={QuoteToday}
+    options={{ headerShown: false }}
+    />
+  </Stack.Navigator>
+  );
+};
+
+const MoreStack = () => {
+   
+  return(
+    <Stack.Navigator>
+     
+    <Stack.Screen
+    name="More"
+    component={More}
+    options={{ headerShown: false }}
+    />
+    
+    <Stack.Screen
+    name="Setting"
+    component={Setting}
+    options={{ headerShown: false }}
+    />
+  </Stack.Navigator>
+  );
+};
+
 
 export default function App() {
   return (
@@ -93,8 +134,8 @@ export default function App() {
               style={{ width: '20px', height: '20px'}}
             />
           ),
-        }}/>
-        <Tab.Screen name ='Discover' component={PhatHien} options={{
+        }}/> 
+        <Tab.Screen name ='Discover' component={DiscoverStack} options={{
           headerShown: false, 
           tabBarLabel: 'Discover',
           tabBarIcon: ({ color, size }) => (
@@ -112,7 +153,7 @@ export default function App() {
               style={{ width: '20px', height: '20px'}}
             />
           )}}/>
-        <Tab.Screen name='More' component={More} options={{
+        <Tab.Screen name='More' component={MoreStack} options={{
           headerShown: false, 
           tabBarLabel: 'More',
           tabBarIcon: ({ color, size }) => (
@@ -121,9 +162,7 @@ export default function App() {
               style={{ width: '20px', height: '20px'}}
             />
           )}}/>
-
       </Tab.Navigator>
     </NavigationContainer>
-
   );
 }
