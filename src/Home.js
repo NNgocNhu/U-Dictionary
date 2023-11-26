@@ -1,29 +1,30 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable, Animated, FlatList, TextInput} from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, TouchableOpacity} from 'react-native';
 import React, { useState } from 'react';
-import  { useRef } from 'react';
+import data from '../data.json';
 
 function Home({navigation}) {
-    const goToDefineScreen = () => {
-        navigation.navigate('Define', { textInputValue: text }); 
-    };
+    
     const [textInputValue, setTextInputValue] = useState('');
-
-    const handleTextChange = (text) => {
-        // Kiểm tra xem text nhập vào có chứa ký tự xuống dòng hay không
-        if (text.includes('\n')) {
-        navigation.navigate('Define', { textInputValue: textInputValue });
-        // Reset giá trị của TextInput sau khi chuyển màn hình (nếu cần)
+    
+    const handleTextChange = (textInputValue) => {
+      // Kiểm tra từ nhập có trong dữ liệu từ file JSON không
+      const foundWordInfo = data.find((word) => word.english.toLocaleLowerCase() === textInputValue.toLocaleLowerCase());
+    
+      if (foundWordInfo) {
+        navigation.navigate('Define', { textInputValue });
         setTextInputValue('');
-        } else {
-        setTextInputValue(text);
-        }
+      } else {
+        console.log('Từ không tồn tại trong dữ liệu!');
+        setTextInputValue(textInputValue);
+      }
     };
+    
   return (
   <View style={styles.container}>
     <View>
       <Text style={styles.text1}>U-Dictionary</Text>
     </View>
-    <Pressable style={styles.translate} onPress={goToDefineScreen}>
+    <Pressable style={styles.translate} onPress={handleTextChange}>
         <Pressable >
             <Pressable style={{flex:1, flexDirection:'row', alignContent: 'center'}}>
                 <TextInput 
@@ -32,13 +33,14 @@ function Home({navigation}) {
                     editable
                     value={textInputValue}
                     multiline={true}
-                    onChangeText={handleTextChange}
-                    maxLength={100}
-                    onSubmitEditing={goToDefineScreen}/>
-                <Image
-                    source={require('../image/audio.png')}
+                    onChangeText={setTextInputValue}
+                    maxLength={100}/>
+                <TouchableOpacity onPress={() => handleTextChange(textInputValue)}>
+                  <Image
+                    source={require('../image/search.png')}
                     style={{ width: 25, height: 25, marginHorizontal: 'auto', marginVertical: 'auto'}}
-                />
+                  />
+                </TouchableOpacity>
             </Pressable>
         </Pressable>
     </Pressable>

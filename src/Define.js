@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+<<<<<<< HEAD
 import React, { useState ,useEffect} from 'react';
 import { ScrollView } from 'react-native';
 import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
@@ -56,15 +57,63 @@ const Wordnet = () => (
         { key: 'second', title: 'Collin' },
         { key: 'third', title: 'Wordnet' },
     ]);
+=======
+import React, { useState } from 'react';
+import { ScrollView } from 'react-native-web';
+import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
+import data from '../data.json';
 
-    const renderScene = SceneMap({
-        first: Concise,
-        second: Collin,
-        third: Wordnet,
-    });
+const initialLayout = { width: Dimensions.get('window').width };
+
+function Define({navigation, route}) {
+  const { textInputValue } = route.params || {};
+
+  const [index, setIndex] = React.useState(0);
+
+  const wordInfo = data.find((word) => word.english === textInputValue);
+>>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
+
+  const Concise = () => (
+    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+      <View>
+
+      </View>
+    </ScrollView>
+  );
+  
+  const Collin = () => (
+      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {/* Nội dung cho Tab 2 */}
+      </ScrollView>
+  );
+  
+  const Wordnet = () => (
+      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        {/* Nội dung cho Tab 3 */}
+      </ScrollView>
+  );
+
+  const [routes] = React.useState([
+    { key: 'first', title: 'Concise' },
+    { key: 'second', title: 'Collin' },
+    { key: 'third', title: 'Wordnet' },
+  ]);
+
+  const renderScene = SceneMap({
+    first: Concise,
+    second: Collin,
+    third: Wordnet,
+  });
+
+  const [imageSource, setImageSource] = useState(require('../image/star0.png'));
+
+  const handleImagePress = () => {
+    setImageSource(require('../image/star_orange.png'));
+  };
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+<<<<<<< HEAD
             <Pressable style={styles.input}>
                 <View style={styles.inputContainer}>
                     <TextInput
@@ -102,7 +151,57 @@ const Wordnet = () => (
                         inactiveColor={'black'}
                     />
                 )}
+=======
+          <Pressable style={styles.input}>
+            <View style={styles.inputContainer}>
+              <TextInput
+                value={wordInfo.english}
+                editable={true}
+                style={styles.textInput}
+              />
+              <Image
+                style={styles.cancel}
+                source={require('../image/cancel.png')}
+              />
+            </View>
+          </Pressable>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Text style={styles.word}>{wordInfo.english}</Text>
+            <TouchableOpacity onPress={handleImagePress}>
+              <Image
+                source={imageSource}
+                style={{ width: 25, height: 25}}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Image
+              source={require('../image/loudspeaker.png')}
+              style={{ width: 25, height: 25}}
+>>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
             />
+            <Text style={styles.pronun}>UK {wordInfo.pronunciation.UK}</Text>
+            <Image
+              source={require('../image/loudspeaker.png')}
+              style={{ width: 25, height: 25, marginLeft: 10}}
+            />
+            <Text style={styles.pronun}>US {wordInfo.pronunciation.US}</Text>
+          </View>
+          <TabView
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            onIndexChange={setIndex}
+            initialLayout={initialLayout}
+            renderTabBar={(props) => (
+              <TabBar
+                {...props}
+                indicatorStyle={{ backgroundColor: '#C2392F' }}
+                style={{ backgroundColor: 'black' }}
+                activeColor={'white'}
+                inactiveColor={'#909090'}
+              />
+            )}
+          />
         </ScrollView>
     );
 }
@@ -132,17 +231,34 @@ const styles = StyleSheet.create({
         padding: 10
     },
     word:{
+<<<<<<< HEAD
+=======
+      width: 330,
+      height: 43,
+>>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
       fontFamily:'SVN-Gilroy',
       fontSize:35,
       fontWeight:700,
       color:'#C8C8C8',
+<<<<<<< HEAD
       marginLeft: 5
+=======
+      marginLeft: 5,
+      marginBottom: 5
+>>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
     },
     textInput:{
       fontFamily:'SVN-Gilroy',
       fontSize:17,
       fontWeight:300,
       color:'#909090',
+      marginLeft: 5
+    },
+    pronun:{
+      fontFamily:'SVN-Gilroy',
+      fontSize:15,
+      fontWeight:300,
+      color:'#5F5F5F',
       marginLeft: 5
     },
     cancel:{
