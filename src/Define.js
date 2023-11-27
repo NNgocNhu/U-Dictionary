@@ -11,26 +11,54 @@ function Define({navigation, route}) {
 
   const [index, setIndex] = React.useState(0);
 
-  const wordInfo = data.find((word) => word.english === textInputValue);
+  const wordInfo = data.find((word) => word.word === textInputValue);
+
+  console.log(wordInfo);
 
   const Concise = () => (
-    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-      <View>
-
-      </View>
+    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start', padding: 10 }}>
+      {Array.isArray(wordInfo) &&
+        wordInfo.map((item) => (
+          <View key={item.id} style={styles.def}>
+            {item.concise.map((conciseItem, index) => (
+              <View style={styles.defWord} key={index}>
+                <Text style={styles.defWordstyle}>{conciseItem.type}</Text>
+                <Text style={styles.defWordstyle}>{conciseItem.definition}</Text>
+              </View>
+            ))}
+          </View>
+        ))}
     </ScrollView>
   );
   
   const Collin = () => (
-      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* Nội dung cho Tab 2 */}
-      </ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+      {Array.isArray(wordInfo) && wordInfo.map((item) => (
+        <View key={item.id} style={styles.def}>
+          {item.collin.map((collinItem, index) => (
+            <View style={styles.defWord} key={index}>
+              <Text style={styles.defWordstyle}>{collinItem.type}</Text>
+              <Text style={styles.defWordstyle}>{collinItem.definition}</Text>
+            </View>
+          ))}
+        </View>
+      ))}
+    </ScrollView>
   );
   
   const Wordnet = () => (
-      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* Nội dung cho Tab 3 */}
-      </ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+      {Array.isArray(wordInfo) && wordInfo.map((item) => (
+        <View key={item.id} style={styles.def}>
+          {item.wordnet.map((wordnetItem, index) => (
+            <View style={styles.defWord} key={index}>
+              <Text style={styles.defWordstyle}>{wordnetItem.type}</Text>
+              <Text style={styles.defWordstyle}>{wordnetItem.definition.join(", ")}</Text>
+            </View>
+          ))}
+        </View>
+      ))}
+    </ScrollView>
   );
 
   const [routes] = React.useState([
@@ -56,7 +84,7 @@ function Define({navigation, route}) {
           <Pressable style={styles.input}>
             <View style={styles.inputContainer}>
               <TextInput
-                value={wordInfo.english}
+                value={wordInfo.word}
                 editable={true}
                 style={styles.textInput}
               />
@@ -66,8 +94,8 @@ function Define({navigation, route}) {
               />
             </View>
           </Pressable>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text style={styles.word}>{wordInfo.english}</Text>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding:10 }}>
+            <Text style={styles.word}>{wordInfo.word}</Text>
             <TouchableOpacity onPress={handleImagePress}>
               <Image
                 source={imageSource}
@@ -75,7 +103,7 @@ function Define({navigation, route}) {
               />
             </TouchableOpacity>
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
             <Image
               source={require('../image/loudspeaker.png')}
               style={{ width: 25, height: 25}}
@@ -185,8 +213,22 @@ const styles = StyleSheet.create({
       borderColor: '#81BEE0',
       borderRadius: 20
     },
-    options:{
-  
+    def:{
+      width: '80%',
+      height: 105,
+      flexDirection: 'column',
+    },
+    defWord:{
+      flexDirection: 'row'
+    },
+    defWordstyle:{
+      fontFamily:'SVN-Gilroy',
+      fontSize:17,
+      fontWeight:300,
+      color:'#fff',
+      textAlign: 'left',
+      marginBottom: 10,
+      marginRight: 10
     },
   });
 export default Define;

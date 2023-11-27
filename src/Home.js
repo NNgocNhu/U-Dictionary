@@ -8,7 +8,7 @@ function Home({navigation}) {
     
     const handleTextChange = (textInputValue) => {
       // Kiểm tra từ nhập có trong dữ liệu từ file JSON không
-      const foundWordInfo = data.find((word) => word.english.toLocaleLowerCase() === textInputValue.toLocaleLowerCase());
+      const foundWordInfo = data.find((word) => word.word.toLocaleLowerCase() === textInputValue.toLocaleLowerCase());
     
       if (foundWordInfo) {
         navigation.navigate('Define', { textInputValue });
