@@ -9,7 +9,7 @@ import Discover from './src/Discover';
 import Favorite from './src/Favorite';
 import Define from './src/Define';
 import QuoteToday from './src/QuoteToday';
-
+import FavoritesList from './src/FavoritesList';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -45,6 +45,7 @@ const HomeStack = () => {
         component={Home}
         options={{ headerShown: false }}
       />
+    
       <Stack.Screen
         name="Define"
         component={Define}
@@ -93,6 +94,22 @@ const DiscoverStack = () => {
   );
 };
 
+const FavoriteStack = () => {
+  return(
+    <Stack.Navigator>
+      <Stack.Screen
+      name="FavoritesList"
+      component={FavoritesList}
+      options={{ headerShown: false }}
+      />
+      <Stack.Screen
+      name="Favorite"
+      component={Favorite}
+      options={{ headerShown: false }}
+      />  
+  </Stack.Navigator>
+  );
+};
 const MoreStack = () => {
    
   return(
@@ -144,7 +161,7 @@ export default function App() {
               style={{ width: '20px', height: '20px'}}
             />
           )}}/>
-        <Tab.Screen name='Favorite' component={Favorite} options={{
+        <Tab.Screen name='FavoritesList' component={FavoriteStack} options={{
           headerShown: false, 
           tabBarLabel: 'Favorite',
           tabBarIcon: ({ color, size }) => (

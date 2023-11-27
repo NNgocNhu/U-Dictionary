@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
-import { ScrollView } from 'react-native-web';
-import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
 import data from '../data.json';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useState ,useEffect} from 'react';
+import { ScrollView } from 'react-native';
+import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -15,6 +16,27 @@ function Define({navigation, route}) {
 
   console.log(wordInfo);
 
+  const handleFavoritePress = async () => {
+    try {
+       // Lấy danh sách từ vựng đã yêu thích từ AsyncStorage
+       const favorites = await AsyncStorage.getItem('favorites');
+       let parsedFavorites = JSON.parse(favorites) || [];
+ 
+       // Thêm từ vựng hiện tại vào danh sách yêu thích
+       parsedFavorites.push({ id: Date.now(), term: textInputValue });
+       
+       // Lưu lại danh sách yêu thích mới vào AsyncStorage
+       await AsyncStorage.setItem('favorites', JSON.stringify(parsedFavorites));
+      console.log('Vocabulary added to favorites:', textInputValue);
+    } catch (error) {
+      console.error('Error handling favorite:', error);
+    }
+  };
+  const handleViewFavoritesPress = () => {
+    console.log('Navigating to FavoritesList');
+    navigation.navigate('FavoritesList');
+  };
+  
   const Concise = () => (
     <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start', padding: 10 }}>
       {Array.isArray(wordInfo) &&
