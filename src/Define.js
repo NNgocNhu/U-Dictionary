@@ -1,5 +1,5 @@
+import data from '../data.json';
 import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, TouchableOpacity } from 'react-native';
-<<<<<<< HEAD
 import React, { useState ,useEffect} from 'react';
 import { ScrollView } from 'react-native';
 import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
@@ -8,89 +8,82 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const initialLayout = { width: Dimensions.get('window').width };
 
 function Define({navigation, route}) {
-  const [textInputValueF, setTextInputValue] = useState('');
-
-  const handleFavoritePress = async () => {
-    try {
-       // Lấy danh sách từ vựng đã yêu thích từ AsyncStorage
-       const favorites = await AsyncStorage.getItem('favorites');
-       let parsedFavorites = JSON.parse(favorites) || [];
- 
-       // Thêm từ vựng hiện tại vào danh sách yêu thích
-       parsedFavorites.push({ id: Date.now(), term: textInputValue });
-       
-       // Lưu lại danh sách yêu thích mới vào AsyncStorage
-       await AsyncStorage.setItem('favorites', JSON.stringify(parsedFavorites));
-      console.log('Vocabulary added to favorites:', textInputValue);
-    } catch (error) {
-      console.error('Error handling favorite:', error);
-    }
-  };
-  const handleViewFavoritesPress = () => {
-    console.log('Navigating to FavoritesList');
-    navigation.navigate('FavoritesList');
-  };
-    const { textInputValue } = route.params || {};
-
-    const [index, setIndex] = React.useState(0);
-
-    const Concise = () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      
-    </View>
-);
-  
-const Collin = () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {/* Nội dung cho Tab 2 */}
-    </View>
-);
-  
-const Wordnet = () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      {/* Nội dung cho Tab 3 */}
-    </View>
-);
-
-    const [routes] = React.useState([
-        { key: 'first', title: 'Concise' },
-        { key: 'second', title: 'Collin' },
-        { key: 'third', title: 'Wordnet' },
-    ]);
-=======
-import React, { useState } from 'react';
-import { ScrollView } from 'react-native-web';
-import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
-import data from '../data.json';
-
-const initialLayout = { width: Dimensions.get('window').width };
-
-function Define({navigation, route}) {
   const { textInputValue } = route.params || {};
 
   const [index, setIndex] = React.useState(0);
 
-  const wordInfo = data.find((word) => word.english === textInputValue);
->>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
+  const wordInfo = data.find((word) => word.word === textInputValue);
 
+  console.log(wordInfo);
+  const handleFavoritePress = async () => {
+    try {
+      // Lấy danh sách từ vựng đã yêu thích từ AsyncStorage
+      const favorites = await AsyncStorage.getItem('favorites');
+      let parsedFavorites = JSON.parse(favorites) || [];
+  
+      // Kiểm tra xem từ vựng đã tồn tại trong danh sách yêu thích chưa
+      const termExists = parsedFavorites.some((favorite) => favorite.term === textInputValue);
+  
+      if (!termExists) {
+        // Thêm từ vựng hiện tại vào danh sách yêu thích
+        parsedFavorites.push({ id: Date.now(), term: textInputValue });
+  
+        // Lưu lại danh sách yêu thích mới vào AsyncStorage
+        await AsyncStorage.setItem('favorites', JSON.stringify(parsedFavorites));
+        console.log('Vocabulary added to favorites:', textInputValue);
+      } else {
+        console.log('Vocabulary already exists in favorites:', textInputValue);
+      }
+    } catch (error) {
+      console.error('Error handling favorite:', error);
+    }
+  };
+  
+  
   const Concise = () => (
-    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-      <View>
-
-      </View>
+    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start', padding: 10 }}>
+      {Array.isArray(wordInfo) &&
+        wordInfo.map((item) => (
+          <View key={item.id} style={styles.def}>
+            {item.concise.map((conciseItem, index) => (
+              <View style={styles.defWord} key={index}>
+                <Text style={styles.defWordstyle}>{conciseItem.type}</Text>
+                <Text style={styles.defWordstyle}>{conciseItem.definition}</Text>
+              </View>
+            ))}
+          </View>
+        ))}
     </ScrollView>
   );
   
   const Collin = () => (
-      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* Nội dung cho Tab 2 */}
-      </ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+      {Array.isArray(wordInfo) && wordInfo.map((item) => (
+        <View key={item.id} style={styles.def}>
+          {item.collin.map((collinItem, index) => (
+            <View style={styles.defWord} key={index}>
+              <Text style={styles.defWordstyle}>{collinItem.type}</Text>
+              <Text style={styles.defWordstyle}>{collinItem.definition}</Text>
+            </View>
+          ))}
+        </View>
+      ))}
+    </ScrollView>
   );
   
   const Wordnet = () => (
-      <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* Nội dung cho Tab 3 */}
-      </ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
+      {Array.isArray(wordInfo) && wordInfo.map((item) => (
+        <View key={item.id} style={styles.def}>
+          {item.wordnet.map((wordnetItem, index) => (
+            <View style={styles.defWord} key={index}>
+              <Text style={styles.defWordstyle}>{wordnetItem.type}</Text>
+              <Text style={styles.defWordstyle}>{wordnetItem.definition.join(", ")}</Text>
+            </View>
+          ))}
+        </View>
+      ))}
+    </ScrollView>
   );
 
   const [routes] = React.useState([
@@ -106,56 +99,23 @@ function Define({navigation, route}) {
   });
 
   const [imageSource, setImageSource] = useState(require('../image/star0.png'));
-
+ 
   const handleImagePress = () => {
-    setImageSource(require('../image/star_orange.png'));
+    if (imageSource === require('../image/star0.png')) {
+      // cập nhật thành star_orange.png và gọi hàm handleFavoritePress
+      setImageSource(require('../image/star_orange.png'));
+      handleFavoritePress();
+    } else {
+      setImageSource(require('../image/star0.png'));
+    }  
   };
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-<<<<<<< HEAD
-            <Pressable style={styles.input}>
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        value={textInputValue}
-                        editable={true}
-                        style={styles.textInput}
-                    />
-                    <Image
-                        style={styles.cancel}
-                        source={require('../image/cancel.png')}
-                    />
-                </View>
-            </Pressable>
-            <View style = {{flex: 1, flexDirection: 'row', alignContent: 'space-around'}}>
-              <Text style={styles.word}>{textInputValue}</Text>
-              <TouchableOpacity onPress={handleFavoritePress}>
-                <Image
-                  source={require('../image/star0.png')}
-                  style={{ width: 18, height: 18, marginHorizontal: 'auto', marginVertical: 'auto'}}
-                />
-              </TouchableOpacity>
-              
-            </View>
-            <TabView
-                navigationState={{ index, routes }}
-                renderScene={renderScene}
-                onIndexChange={setIndex}
-                initialLayout={initialLayout}
-                renderTabBar={(props) => (
-                    <TabBar
-                        {...props}
-                        indicatorStyle={{ backgroundColor: '#C2392F' }}
-                        style={{ backgroundColor: 'black' }}
-                        activeColor={'white'}
-                        inactiveColor={'black'}
-                    />
-                )}
-=======
           <Pressable style={styles.input}>
             <View style={styles.inputContainer}>
               <TextInput
-                value={wordInfo.english}
+                value={wordInfo.word}
                 editable={true}
                 style={styles.textInput}
               />
@@ -165,20 +125,19 @@ function Define({navigation, route}) {
               />
             </View>
           </Pressable>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Text style={styles.word}>{wordInfo.english}</Text>
-            <TouchableOpacity onPress={handleImagePress}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding:10 }}>
+            <Text style={styles.word}>{wordInfo.word}</Text>
+            <TouchableOpacity onPress={handleImagePress} >
               <Image
                 source={imageSource}
                 style={{ width: 25, height: 25}}
               />
             </TouchableOpacity>
           </View>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
             <Image
               source={require('../image/loudspeaker.png')}
               style={{ width: 25, height: 25}}
->>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
             />
             <Text style={styles.pronun}>UK {wordInfo.pronunciation.UK}</Text>
             <Image
@@ -231,21 +190,14 @@ const styles = StyleSheet.create({
         padding: 10
     },
     word:{
-<<<<<<< HEAD
-=======
       width: 330,
       height: 43,
->>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
       fontFamily:'SVN-Gilroy',
       fontSize:35,
       fontWeight:700,
       color:'#C8C8C8',
-<<<<<<< HEAD
-      marginLeft: 5
-=======
       marginLeft: 5,
       marginBottom: 5
->>>>>>> 01fbb196995a9c5341b1b507034b8a6d709b99da
     },
     textInput:{
       fontFamily:'SVN-Gilroy',
@@ -292,8 +244,22 @@ const styles = StyleSheet.create({
       borderColor: '#81BEE0',
       borderRadius: 20
     },
-    options:{
-  
+    def:{
+      width: '80%',
+      height: 105,
+      flexDirection: 'column',
+    },
+    defWord:{
+      flexDirection: 'row'
+    },
+    defWordstyle:{
+      fontFamily:'SVN-Gilroy',
+      fontSize:17,
+      fontWeight:300,
+      color:'#fff',
+      textAlign: 'left',
+      marginBottom: 10,
+      marginRight: 10
     },
   });
 export default Define;
