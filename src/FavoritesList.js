@@ -4,19 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function FavoritesList({navigation}) {
   const [favoriteTerms, setFavoriteTerms] = useState([]);
-  
-  const handleClearAllFavorites = async () => {
-    try {
-      // Xóa toàn bộ danh sách từ vựng yêu thích
-      await AsyncStorage.removeItem('favorites');
-      Alert.alert('Success', 'All favorite terms cleared successfully.');
-
-      setFavorites([]);
-    } catch (error) {
-      console.error('Error clearing favorites:', error);
-      Alert.alert('Error', 'An error occurred while clearing the favorite terms.');
-    }
-  };
   const handleDeleteFavorite = async (termId) => {
     try {
       const updatedFavorites = favoriteTerms.filter((term) => term.id !== termId);
@@ -24,17 +11,14 @@ function FavoritesList({navigation}) {
 
       setFavoriteTerms(updatedFavorites);
 
-      Alert.alert('Success', 'Term removed from favorites successfully.');
     } catch (error) {
       console.error('Error deleting favorite term:', error);
-      Alert.alert('Error', 'An error occurred while removing the term from favorites.');
     }
   };
   useEffect(() => {
     const fetchFavoriteTerms = async () => {
       try {
         const favorites = await AsyncStorage.getItem('favorites');
-        console.log('Favorites from AsyncStorage:', favorites);
         const parsedFavorites = JSON.parse(favorites) || [];
         setFavoriteTerms(parsedFavorites);
         if (parsedFavorites.length === 0) {
@@ -47,12 +31,12 @@ function FavoritesList({navigation}) {
 
     fetchFavoriteTerms();
   }, [navigation]);
-  const [imageSource, setImageSource] = useState(require('../image/star0.png'));
+  const [imageSource, setImageSource] = useState(require('../image/star_orange.png'));
   const handleImagePress = (pressedFavorite) => {
     setFavoriteTerms((prevFavorites) => {
       const updatedFavorites = prevFavorites.map((favorite) => {
         if (favorite.id === pressedFavorite.id) {
-          // Toggle the favorite status
+          
           handleDeleteFavorite(pressedFavorite.id);
           return { ...pressedFavorite, isFavorite: !pressedFavorite.isFavorite };
         }
@@ -86,7 +70,7 @@ function FavoritesList({navigation}) {
           </Pressable>
           <TouchableOpacity onPress={() => handleImagePress(favorite)}>
                 <Image
-                  source={favorite.isFavorite ? require('../image/star_orange.png') : require('../image/star0.png')}
+                  source={favorite.isFavorite ? require('../image/star0.png') : require('../image/star_orange.png')}
                   style={{ width: 40, height: 40 }}
                 />
               </TouchableOpacity>
@@ -96,9 +80,6 @@ function FavoritesList({navigation}) {
         
       ))}
       </View>
-      <TouchableOpacity onPress={handleClearAllFavorites}>
-              <Text style={styles.text2}>RemoveAll</Text>
-          </TouchableOpacity>
     </ScrollView>
     );
 }

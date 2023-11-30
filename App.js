@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, TouchableOpacity } from 'react-native';
 import Home from './src/Home';
 import More from './src/More';
-import Setting from './src/Setting';
 import Discover from './src/Discover';
 import Favorite from './src/Favorite';
 import Define from './src/Define';
@@ -118,12 +117,6 @@ const MoreStack = () => {
     <Stack.Screen
     name="More"
     component={More}
-    options={{ headerShown: false }}
-    />
-    
-    <Stack.Screen
-    name="Setting"
-    component={Setting}
     options={{ headerShown: false }}
     />
   </Stack.Navigator>

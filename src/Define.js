@@ -4,6 +4,7 @@ import React, { useState ,useEffect} from 'react';
 import { ScrollView } from 'react-native';
 import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
 
 const initialLayout = { width: Dimensions.get('window').width };
 
@@ -102,9 +103,10 @@ function Define({navigation, route}) {
  
   const handleImagePress = () => {
     if (imageSource === require('../image/star0.png')) {
+      handleFavoritePress();
       // cập nhật thành star_orange.png và gọi hàm handleFavoritePress
       setImageSource(require('../image/star_orange.png'));
-      handleFavoritePress();
+      
     } else {
       setImageSource(require('../image/star0.png'));
     }  
