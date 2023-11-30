@@ -10,6 +10,7 @@ import Favorite from './src/Favorite';
 import Define from './src/Define';
 import QuoteToday from './src/QuoteToday';
 import FavoritesList from './src/FavoritesList';
+import Fail_Screen from './src/Fail';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -72,6 +73,28 @@ const HomeStack = () => {
           ),
         })}
       />
+
+      <Stack.Screen
+        name="Fail"
+        component={Fail_Screen}
+        options={({ navigation }) => ({
+          title: '404',
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontFamily: 'SVN-Gilroy',
+            fontSize: 20,
+            fontWeight: '300',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Image source={require('./image/back.png')} style={{ width: 20, height: 20, marginLeft: 10}} />
+            </TouchableOpacity>
+          )
+        })}
+      />
       
     </Stack.Navigator>
   );
@@ -126,6 +149,28 @@ const MoreStack = () => {
     component={Setting}
     options={{ headerShown: false }}
     />
+
+      <Stack.Screen
+        name="Fail"
+        component={Fail_Screen}
+        options={({ navigation }) => ({
+          title: '404',
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+          headerTitleStyle: {
+            fontFamily: 'SVN-Gilroy',
+            fontSize: 20,
+            fontWeight: '300',
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Image source={require('./image/back.png')} style={{ width: 20, height: 20, marginLeft: 10}} />
+            </TouchableOpacity>
+          )
+        })}
+      />
   </Stack.Navigator>
   );
 };
