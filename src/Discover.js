@@ -1,94 +1,5 @@
 import { StyleSheet, Text, View, Image, Pressable, ScrollView ,Linking , FlatList} from 'react-native';
-import React from 'react';
-const COLORS = {
-  January: '#4169E1',
-  February: '#33FF57',
-  March: '#5733FF',
-  April: '#FF3366',
-  May: '#FF1493',
-  June: '#FFD700',
-  July: '#33FFCC',
-  August: '#8A2BE2',
-  September: '#FF1493',
-  October: '#7CFC00',
-  November: '#32CD32',
-  December: '#FF4500',
-};
-
-const DATA = [
-  {
-    id: '1',
-    title: 'January',
-    color: COLORS.January,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSd-8VyfW2kAEgJVkplk8zDrssUTP9E0QV0Evw37fdTWInT-rQ/viewform'
-  },
-  {
-    id: '2',
-    title: 'February',
-    color: COLORS.February,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '3',
-    title: 'March',
-    color: COLORS.March,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSd-8VyfW2kAEgJVkplk8zDrssUTP9E0QV0Evw37fdTWInT-rQ/viewform'
-  },
-  {
-    id: '4',
-    title: 'April',
-    color: COLORS.April,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '5',
-    title: 'May',
-    color: COLORS.May,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSd-8VyfW2kAEgJVkplk8zDrssUTP9E0QV0Evw37fdTWInT-rQ/viewform'
-  },
-  {
-    id: '6',
-    title: 'June',
-    color: COLORS.June,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '7',
-    title: 'July',
-    color: COLORS.July,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '8',
-    title: 'August',
-    color: COLORS.August,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '9',
-    title: 'September',
-    color: COLORS.September,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '10',
-    title: 'October',
-    color: COLORS.October,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '11',
-    title: 'November',
-    color: COLORS.November,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-  {
-    id: '12',
-    title: 'December',
-    color: COLORS.December,
-    link:'https://docs.google.com/forms/d/e/1FAIpQLSdfhnRjfakzDSDong45aY8WV0vT7YFSUOTbPI_-GXWa2QEsiQ/viewform'
-  },
-];
+import React, { useState, useEffect } from 'react';
 
 const dataVideo = [
   {
@@ -132,26 +43,6 @@ const dataVideo = [
     link:'https://udictionaryblog.wordpress.com/2022/01/27/today-we-are-gonna-learn-the-word-bamboozle/?preview_id&utm_source=zalo&utm_medium=zalo&utm_campaign=zalo'
   },
 ];
-const Item = ({ title, backgroundColor,link }) => (
-  <Pressable  onPress={() => Linking.openURL(link)} style={{  flexDirection: 'row', justifyContent: 'center',marginRight:10 }}>
-    <View style={{ width: 72, height: 85, backgroundColor, flexDirection: 'column', padding: 10 }}>
-      <View style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
-        <Text style={styles.text3}>Spelling Check</Text>
-      </View>
-      <View style={{ justifyContent: 'flex-end', alignItems: 'center' }}>
-        <Text style={styles.text4}>QUIZ</Text>
-      </View>
-    </View>
-    <View style={{ height: 85, width: 201, backgroundColor: 'rgba(90, 84, 84, 0.60)', padding: 15 }}>
-      <View>
-        <Text style={styles.text3}>Which Spelling Is Correct?</Text>
-      </View>
-      <View style={{ paddingTop: 12 }}>
-        <Text style={styles.text4}>{title}</Text>
-      </View>
-    </View>
-  </Pressable>
-);
 
 const ItemVideo = ({ item }) => (
   <View style={{ flexDirection: 'column', justifyContent: 'space-around',marginHorizontal:10 }}>
@@ -170,6 +61,33 @@ const ItemVideo = ({ item }) => (
   </View>
 );
 function Discover({navigation}) {
+    var [data, setData] = useState([]);
+    useEffect(() => {
+        fetch("https://65607c9d83aba11d99d0eb63.mockapi.io/ww")
+            .then((response) => response.json())
+            .then((json) => { setData(json) });
+    }, []);
+const renderSpellingCheckItem = (item) => (
+  <Pressable  onPress={() => Linking.openURL(item.link)} style={{  flexDirection: 'row', justifyContent: 'center',marginRight:10 }}>
+    <View style={{ width: 72, height: 85, backgroundColor:item.color, flexDirection: 'column', padding: 10 }}>
+      <View style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
+        <Text style={styles.text3}>Spelling Check</Text>
+      </View>
+      <View style={{ justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Text style={styles.text4}>QUIZ</Text>
+      </View>
+    </View>
+    <View style={{ height: 85, width: 201, backgroundColor: 'rgba(90, 84, 84, 0.60)', padding: 15 }}>
+      <View>
+        <Text style={styles.text3}>Which Spelling Is Correct?</Text>
+      </View>
+      <View style={{ paddingTop: 12 }}>
+        <Text style={styles.text4}>{item.title}</Text>
+      </View>
+    </View>
+  </Pressable>
+);
+
   return (
   <ScrollView>
   <View style={styles.container}>
@@ -196,17 +114,9 @@ function Discover({navigation}) {
       <View style={{alignItems:'center'}}>
         <Text style={[styles.text2,{paddingRight:150}]}>Kiểm tra chính tả</Text>
       </View>
-      <View style={{ paddingHorizontal:10 }}>
-        <FlatList
-          horizontal
-          data={DATA}
-          style={{ width: 310 }}
-          contentContainerStyle={{ alignItems: 'center' }}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => <Item title={item.title} backgroundColor={item.color} link={item.link}/>}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
+      <ScrollView horizontal contentContainerStyle={styles.horizontalScrollView}>
+        {data.map((item) => renderSpellingCheckItem(item))}
+      </ScrollView> 
     </View>
     <View style={{flex:4}}>
       <Text style={[styles.text2,{marginLeft:12}]}>Góc tiếng anh </Text>
@@ -279,6 +189,11 @@ const styles = StyleSheet.create({
   },
   overlay: {
     color:'#000'
+  },
+  horizontalScrollView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width:300
   },
 
 });

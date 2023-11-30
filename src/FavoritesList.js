@@ -4,13 +4,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function FavoritesList({navigation}) {
   const [favoriteTerms, setFavoriteTerms] = useState([]);
+  
   const handleClearAllFavorites = async () => {
     try {
       // Xóa toàn bộ danh sách từ vựng yêu thích
       await AsyncStorage.removeItem('favorites');
       Alert.alert('Success', 'All favorite terms cleared successfully.');
 
-      // Update the local state if needed
       setFavorites([]);
     } catch (error) {
       console.error('Error clearing favorites:', error);
@@ -19,13 +19,9 @@ function FavoritesList({navigation}) {
   };
   const handleDeleteFavorite = async (termId) => {
     try {
-      // Remove the term from favorites based on its id
       const updatedFavorites = favoriteTerms.filter((term) => term.id !== termId);
-
-      // Save the updated favorites to AsyncStorage
       await AsyncStorage.setItem('favorites', JSON.stringify(updatedFavorites));
 
-      // Update the state to re-render the component
       setFavoriteTerms(updatedFavorites);
 
       Alert.alert('Success', 'Term removed from favorites successfully.');
@@ -51,20 +47,32 @@ function FavoritesList({navigation}) {
 
     fetchFavoriteTerms();
   }, [navigation]);
-  
+  const [imageSource, setImageSource] = useState(require('../image/star0.png'));
+  const handleImagePress = (pressedFavorite) => {
+    setFavoriteTerms((prevFavorites) => {
+      const updatedFavorites = prevFavorites.map((favorite) => {
+        if (favorite.id === pressedFavorite.id) {
+          // Toggle the favorite status
+          handleDeleteFavorite(pressedFavorite.id);
+          return { ...pressedFavorite, isFavorite: !pressedFavorite.isFavorite };
+        }
+        return favorite;
+      });
+
+      return updatedFavorites;
+    });
+  };
   return (
   <ScrollView contentContainerStyle={styles.container}>
     <View style={{flex:2,flexDirection:'row',justifyContent:'space-between'}}>
         <Text style={styles.text1}>Favorite</Text>
         <Image style={{height:70,width:70,resizeMode:'contain'}} source={require('../image/folderStar.png')}/>
     </View>
-    <View style={{flex:10,flexDirection:'column',}}>
+    <View style={{flex:8,flexDirection:'column',}}>
       {favoriteTerms.map((favorite, index) => (
     <View style={{flex:2,flexDirection:'column',alignItems:'center',height:150,width:330 }}>
-        <View style={{height:150,width:330, flexDirection:'row',justifyContent:'space-between'}}>
-          <View style={{width:55,height:55,}}>
-              <Image style={{height:29,width:29,}} source={require('../image/Star.png')}/>
-          </View>
+        <View style={{height:70,width:330, flexDirection:'row',justifyContent:'space-between',borderBottomWidth:1,borderBottomColor:'#ccc'}}>
+        
           <Pressable
             key={index}
             style={{
@@ -76,14 +84,14 @@ function FavoritesList({navigation}) {
             <Text style={styles.text1}>{favorite.term}</Text>
             
           </Pressable>
-          <TouchableOpacity style={{paddingTop:15}} onPress={() => handleDeleteFavorite(favorite.id)}>
-              <Text style={styles.text2}>Remove</Text>
-          </TouchableOpacity>
-          
-         
+          <TouchableOpacity onPress={() => handleImagePress(favorite)}>
+                <Image
+                  source={favorite.isFavorite ? require('../image/star_orange.png') : require('../image/star0.png')}
+                  style={{ width: 40, height: 40 }}
+                />
+              </TouchableOpacity>
           
         </View>
-        <View style={{ borderBottomWidth: 1, borderBottomColor: 'rgba(152, 145, 145, 0.8)',width:330,marginTop:15}} />
       </View>
         
       ))}

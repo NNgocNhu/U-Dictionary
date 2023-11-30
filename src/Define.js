@@ -22,24 +22,34 @@ function Define({ navigation, route }) {
   const wordInfo = data.find((word) => word.word === textInputValue);
 
   console.log(wordInfo);
-
   const handleFavoritePress = async () => {
     try {
       // Lấy danh sách từ vựng đã yêu thích từ AsyncStorage
-      const favorites = await AsyncStorage.getItem("favorites");
+      const favorites = await AsyncStorage.getItem('favorites');
       let parsedFavorites = JSON.parse(favorites) || [];
-
-      // Thêm từ vựng hiện tại vào danh sách yêu thích
-      parsedFavorites.push({ id: Date.now(), term: textInputValue });
-
-      // Lưu lại danh sách yêu thích mới vào AsyncStorage
-      await AsyncStorage.setItem("favorites", JSON.stringify(parsedFavorites));
-      console.log("Vocabulary added to favorites:", textInputValue);
+  
+      // Kiểm tra xem từ vựng đã tồn tại trong danh sách yêu thích chưa
+      const termExists = parsedFavorites.some((favorite) => favorite.term === textInputValue);
+  
+      if (!termExists) {
+        // Thêm từ vựng hiện tại vào danh sách yêu thích
+        parsedFavorites.push({ id: Date.now(), term: textInputValue });
+  
+        // Lưu lại danh sách yêu thích mới vào AsyncStorage
+        await AsyncStorage.setItem('favorites', JSON.stringify(parsedFavorites));
+        console.log('Vocabulary added to favorites:', textInputValue);
+      } else {
+        console.log('Vocabulary already exists in favorites:', textInputValue);
+      }
     } catch (error) {
       console.error("Error handling favorite:", error);
     }
   };
-
+  const handleViewFavoritesPress = () => {
+    console.log('Navigating to FavoritesList');
+    navigation.navigate('FavoritesList');
+  };
+  
   const Concise = () => (
     <ScrollView
       contentContainerStyle={{
@@ -125,93 +135,75 @@ function Define({ navigation, route }) {
     third: Wordnet,
   });
 
-  const [imageSource, setImageSource] = useState(require("../image/star0.png"));
+  const [imageSource, setImageSource] = useState(require('../image/star0.png'));
 
   const handleImagePress = () => {
-    if (imageSource === require("../image/star0.png")) {
+    if (imageSource === require('../image/star0.png')) {
       // cập nhật thành star_orange.png và gọi hàm handleFavoritePress
-      setImageSource(require("../image/star_orange.png"));
+      setImageSource(require('../image/star_orange.png'));
       handleFavoritePress();
     } else {
-      setImageSource(require("../image/star0.png"));
-    }
+      setImageSource(require('../image/star0.png'));
+    }  
   };
 
   React.useEffect(() => {
     console.log('Index has changed:', index);
   }, [index]);
 
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Pressable style={styles.input}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            value={wordInfo.word}
-            editable={true}
-            style={styles.textInput}
+    return (
+        <ScrollView contentContainerStyle={styles.container}>
+          <Pressable style={styles.input}>
+            <View style={styles.inputContainer}>
+              <TextInput
+                value={wordInfo.word}
+                editable={true}
+                style={styles.textInput}
+              />
+              <Image
+                style={styles.cancel}
+                source={require('../image/cancel.png')}
+              />
+            </View>
+          </Pressable>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding:10 }}>
+            <Text style={styles.word}>{wordInfo.word}</Text>
+            <TouchableOpacity onPress={handleImagePress}>
+              <Image
+                source={imageSource}
+                style={{ width: 25, height: 25}}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: 10 }}>
+            <Image
+              source={require('../image/loudspeaker.png')}
+              style={{ width: 25, height: 25}}
+            />
+            <Text style={styles.pronun}>UK {wordInfo.pronunciation.UK}</Text>
+            <Image
+              source={require('../image/loudspeaker.png')}
+              style={{ width: 25, height: 25, marginLeft: 10}}
+            />
+            <Text style={styles.pronun}>US {wordInfo.pronunciation.US}</Text>
+          </View>
+          <TabView
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            onIndexChange={setIndex}
+            initialLayout={initialLayout}
+            renderTabBar={(props) => (
+              <TabBar
+                {...props}
+                indicatorStyle={{ backgroundColor: '#C2392F' }}
+                style={{ backgroundColor: 'black' }}
+                activeColor={'white'}
+                inactiveColor={'#909090'}
+              />
+            )}
           />
-          <Image
-            style={styles.cancel}
-            source={require("../image/cancel.png")}
-          />
-        </View>
-      </Pressable>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: 10,
-        }}
-      >
-        <Text style={styles.word}>{wordInfo.word}</Text>
-        <TouchableOpacity onPress={handleImagePress}>
-          <Image source={imageSource} style={{ width: 25, height: 25 }} />
-        </TouchableOpacity>
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: 10,
-        }}
-      >
-        <Image
-          source={require("../image/loudspeaker.png")}
-          style={{ width: 25, height: 25 }}
-        />
-        <Text style={styles.pronun}>UK {wordInfo.pronunciation.UK}</Text>
-        <Image
-          source={require("../image/loudspeaker.png")}
-          style={{ width: 25, height: 25, marginLeft: 10 }}
-        />
-        <Text style={styles.pronun}>US {wordInfo.pronunciation.US}</Text>
-      </View>
-      <View style={{
-        width: '100%',
-        height: 10,
-        backgroundColor: '#2D2D2D'
-      }}>
-
-      </View>
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={initialLayout}
-        renderTabBar={(props) => (
-          <TabBar
-            {...props}
-            indicatorStyle={{ backgroundColor: "#C2392F" }}
-            style={{ backgroundColor: "black" }}
-            activeColor={"white"}
-            inactiveColor={"#909090"}
-          />
-        )}
-      />
-    </ScrollView>
-  );
+        </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({

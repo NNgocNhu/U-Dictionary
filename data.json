@@ -24,7 +24,10 @@
         "definition": "a figure of a person made of packed snow"
       }
     ],
-    "phrases": ["make a snowman", "abominable snowman"],
+    "phrases": [
+      "make a snowman",
+      "abominable snowman"
+    ],
     "source": "wikipedia",
     "pronunciation": {
       "US": "/ˈsnoʊ.mæn/",
@@ -57,14 +60,20 @@
     "wordnet": [
       {
         "type": "n",
-        "definition": ["a facility equipped with special equipment and personnel for a particular purpose", "proper or designated social situation"]
+        "definition": [
+          "a facility equipped with special equipment and personnel for a particular purpose",
+          "proper or designated social situation"
+        ]
       },
       {
         "type": "v",
         "definition": "assign to a station"
       }
     ],
-    "phrases": ["power station", "railway station"],
+    "phrases": [
+      "power station",
+      "railway station"
+    ],
     "source": "wikipedia",
     "pronunciation": {
       "US": "/ˈsteɪ.ʃn/",
@@ -97,14 +106,24 @@
     "wordnet": [
       {
         "type": "n",
-        "definition": ["a written work or composition that has been published (printed on pages bound together", "physical objects consisting of a number of pages bound together"]
+        "definition": [
+          "a written work or composition that has been published (printed on pages bound together",
+          "physical objects consisting of a number of pages bound together"
+        ]
       },
       {
         "type": "v",
-        "definition": ["record a charge in a police register", "engage for a performance"]
+        "definition": [
+          "record a charge in a police register",
+          "engage for a performance"
+        ]
       }
     ],
-    "phrases": ["in the book", "book on", "book in"],
+    "phrases": [
+      "in the book",
+      "book on",
+      "book in"
+    ],
     "source": "wikipedia",
     "pronunciation": {
       "US": "/bʊk/",
@@ -136,7 +155,10 @@
         "definition": "fruit with red or yellow or green skin and sweet to tart crisp whitish flesh."
       }
     ],
-    "phrases": ["an apple", "apple tree"],
+    "phrases": [
+      "an apple",
+      "apple tree"
+    ],
     "source": "wikipedia",
     "pronunciation": {
       "US": "/ˈæp.əl/",
@@ -165,10 +187,16 @@
     "wordnet": [
       {
         "type": "n",
-        "definition": ["a motor vehicle with four wheels, usually propelled by an internal combustion engine", "a wheeled vehicle adapted to the rails or railroad"]
+        "definition": [
+          "a motor vehicle with four wheels, usually propelled by an internal combustion engine",
+          "a wheeled vehicle adapted to the rails or railroad"
+        ]
       }
     ],
-    "phrases": ["by car", "car accident"],
+    "phrases": [
+      "by car",
+      "car accident"
+    ],
     "source": "wikipedia",
     "pronunciation": {
       "US": "/kɑː(r)/",
