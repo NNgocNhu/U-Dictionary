@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Image,Pressable } from 'react-native';
+import { StyleSheet, Text, View,Image,Pressable, Linking } from 'react-native';
 import React from 'react';
 
 function More({navigation}) {
@@ -93,9 +93,7 @@ function More({navigation}) {
           <Text style={styles.text3}>Chính sách Bảo mật</Text>
         </View>
         <Pressable style={{width:40,marginTop:5}}
-                    onPress={() => {
-              navigation.navigate('Fail')
-            }}>
+                    onPress={() => Linking.openURL('https://inter.youdao.com/cloudfront/inter-web/ud/privacy.html')}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
       </View>
