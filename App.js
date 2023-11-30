@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, TouchableOpacity } from 'react-native';
 import Home from './src/Home';
 import More from './src/More';
-import Setting from './src/Setting';
 import Discover from './src/Discover';
 import Favorite from './src/Favorite';
 import Define from './src/Define';

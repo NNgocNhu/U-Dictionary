@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+import data from '../data.json';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useState ,useEffect} from 'react';
+import { ScrollView } from 'react-native';
+import {SceneMap, TabView, TabBar} from 'react-native-tab-view';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from '@react-navigation/native';
+=======
 import data from "../data.json";
 import {
   StyleSheet,
@@ -13,6 +22,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollView } from "react-native";
 import { SceneMap, TabView, TabBar } from "react-native-tab-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+>>>>>>> 831959fa5e5e08f64ce27eb0d2e0d588824d4340
 
 const initialLayout = { width: Dimensions.get("window").width };
 
@@ -139,9 +149,10 @@ function Define({ navigation, route }) {
 
   const handleImagePress = () => {
     if (imageSource === require('../image/star0.png')) {
+      handleFavoritePress();
       // cập nhật thành star_orange.png và gọi hàm handleFavoritePress
       setImageSource(require('../image/star_orange.png'));
-      handleFavoritePress();
+      
     } else {
       setImageSource(require('../image/star0.png'));
     }  
