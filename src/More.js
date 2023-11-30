@@ -20,7 +20,7 @@ function More({navigation}) {
         </View>
         <Pressable style={{width:40,marginTop:5}}
                     onPress={() => {
-              navigation.navigate('Setting')
+              navigation.navigate('Fail')
             }}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
@@ -35,7 +35,7 @@ function More({navigation}) {
         </View>
         <Pressable style={{width:40,marginTop:5}}
                     onPress={() => {
-              navigation.navigate('Setting')
+              navigation.navigate('Fail')
             }}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
@@ -50,7 +50,7 @@ function More({navigation}) {
         </View>
         <Pressable style={{width:40,marginTop:5}}
                     onPress={() => {
-              navigation.navigate('Setting')
+              navigation.navigate('Fail')
             }}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
@@ -65,7 +65,7 @@ function More({navigation}) {
         </View>
         <Pressable style={{width:40,marginTop:5}}
                     onPress={() => {
-              navigation.navigate('Setting')
+              navigation.navigate('Fail')
             }}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
@@ -80,7 +80,7 @@ function More({navigation}) {
         </View>
         <Pressable style={{width:40,marginTop:5}}
                     onPress={() => {
-              navigation.navigate('Setting')
+              navigation.navigate('Fail')
             }}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
@@ -94,7 +94,7 @@ function More({navigation}) {
         </View>
         <Pressable style={{width:40,marginTop:5}}
                     onPress={() => {
-              navigation.navigate('Setting')
+              navigation.navigate('Fail')
             }}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
