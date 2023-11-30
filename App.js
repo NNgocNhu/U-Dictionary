@@ -142,12 +142,6 @@ const MoreStack = () => {
     component={More}
     options={{ headerShown: false }}
     />
-    
-    <Stack.Screen
-    name="Setting"
-    component={Setting}
-    options={{ headerShown: false }}
-    />
 
       <Stack.Screen
         name="Fail"

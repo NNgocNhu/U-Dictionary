@@ -20,11 +20,7 @@ function More({navigation}) {
         </View>
         <Pressable style={{width:40,marginTop:5}}
                     onPress={() => {
-<<<<<<< HEAD
-              navigation.navigate('')
-=======
               navigation.navigate('Fail')
->>>>>>> 831959fa5e5e08f64ce27eb0d2e0d588824d4340
             }}>
           <Image style={styles.image} source={require('../image/next.png')}/>
         </Pressable>
@@ -37,14 +33,7 @@ function More({navigation}) {
         <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
           <Text style={styles.text3}>Xếp hạng</Text>
         </View>
-<<<<<<< HEAD
         <TouchableOpacity onPress={() => Linking.openURL('https://play.google.com/store/apps/details?id=app.story.craftystudio.shortstory')}>
-=======
-        <Pressable style={{width:40,marginTop:5}}
-                    onPress={() => {
-              navigation.navigate('Fail')
-            }}>
->>>>>>> 831959fa5e5e08f64ce27eb0d2e0d588824d4340
           <Image style={styles.image} source={require('../image/next.png')}/>
        </TouchableOpacity>
       </View>
@@ -56,14 +45,8 @@ function More({navigation}) {
         <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
           <Text style={styles.text3}>Phản hồi</Text>
         </View>
-<<<<<<< HEAD
+
         <TouchableOpacity onPress={() => Linking.openURL('https://mail.google.com/mail/u/0/?pli=1#inbox?compose=new')}>
-=======
-        <Pressable style={{width:40,marginTop:5}}
-                    onPress={() => {
-              navigation.navigate('Fail')
-            }}>
->>>>>>> 831959fa5e5e08f64ce27eb0d2e0d588824d4340
           <Image style={styles.image} source={require('../image/next.png')}/>
         </TouchableOpacity>
           
@@ -76,14 +59,7 @@ function More({navigation}) {
         <View style={{flexDirection:'row', justifyContent:'space-between',width:280}}>
           <Text style={styles.text3}>Khảo sát sự hài lòng</Text>
         </View>
-<<<<<<< HEAD
         <TouchableOpacity onPress={() => Linking.openURL('https://mail.google.com/mail/u/0/?pli=1#inbox?compose=new')}>
-=======
-        <Pressable style={{width:40,marginTop:5}}
-                    onPress={() => {
-              navigation.navigate('Fail')
-            }}>
->>>>>>> 831959fa5e5e08f64ce27eb0d2e0d588824d4340
           <Image style={styles.image} source={require('../image/next.png')}/>
         </TouchableOpacity>
       </View>

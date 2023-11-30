@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable, TextInput, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, TouchableOpacity, Alert} from 'react-native';
 import React, { useState } from 'react';
 import data from '../data.json';
 
@@ -36,7 +36,7 @@ function Home({navigation}) {
                     placeholder="Nhập ký tự"
                     editable
                     value={textInputValue}
-                    multiline={true}
+                    onSubmitEditing={handleTextChange}
                     onChangeText={setTextInputValue}
                     maxLength={100}/>
                 <TouchableOpacity onPress={() => handleTextChange(textInputValue)}>

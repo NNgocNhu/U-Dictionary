@@ -188,6 +188,7 @@ function Define({ navigation, route }) {
             />
             <Text style={styles.pronun}>US {wordInfo.pronunciation.US}</Text>
           </View>
+          <View style={{width: '100%', height: 10, backgroundColor: '#2D2D2D'}}></View>
           <TabView
             navigationState={{ index, routes }}
             renderScene={renderScene}
