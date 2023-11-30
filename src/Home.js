@@ -4,21 +4,25 @@ import data from '../data.json';
 
 function Home({navigation}) {
     
-    const [textInputValue, setTextInputValue] = useState('');
+  const [textInputValue, setTextInputValue] = useState('');
     
-    const handleTextChange = (textInputValue) => {
-      // Kiểm tra từ nhập có trong dữ liệu từ file JSON không
-      const foundWordInfo = data.find((word) => word.word.toLocaleLowerCase() === textInputValue.toLocaleLowerCase());
+  const handleTextChange = (textInputValue) => {
+    // Kiểm tra từ nhập có trong dữ liệu từ file JSON không
+    const foundWordInfo = data.find((word) => word.word.toLocaleLowerCase() === textInputValue.toLocaleLowerCase());
     
-      if (foundWordInfo) {
-        navigation.navigate('Define', { textInputValue });
-        setTextInputValue('');
-      } else {
-        console.log('Từ không tồn tại trong dữ liệu!');
-        setTextInputValue(textInputValue);
-      }
-    };
-    
+    if (foundWordInfo) {
+      navigation.navigate('Define', { textInputValue });
+      setTextInputValue('');
+    } else {
+      console.log('Từ không tồn tại trong dữ liệu!');
+      setTextInputValue(textInputValue);
+    }
+  };
+
+  const handlePress = () => {
+    navigation.navigate('Fail');
+  };
+
   return (
   <View style={styles.container}>
     <View>
@@ -45,8 +49,8 @@ function Home({navigation}) {
         </Pressable>
     </Pressable>
     <View style={{flex:1, flexDirection:'row', alignContent: 'space-between'}}>
-        <Pressable style={{flex:1, flexDirection:'row'}}>
-            <Pressable style={styles.uDiction}>
+        <Pressable style={{flex:1, flexDirection:'row'}} >
+            <Pressable style={styles.uDiction} onPress={handlePress}>
                 <Image
                     source={require('../image/letter-u.png')}
                     style={{ width: 60, height: 60, marginTop: 30, marginLeft: 50}}
@@ -63,7 +67,7 @@ function Home({navigation}) {
                     }}>Màu</Text>
             </Pressable>
             <Pressable style={{flex:1,flexDirection:'column'}}>  
-                <Pressable style={styles.subUDiction}>
+                <Pressable style={styles.subUDiction} onPress={handlePress}>
                     <Image
                         source={require('../image/camera.png')}
                         style={{ width: 25, height: 25, marginTop: 10, marginLeft: 5}}
@@ -80,7 +84,7 @@ function Home({navigation}) {
                             color: 'white'
                         }}>Camera</Text>
                 </Pressable>
-                <Pressable style={styles.subUDiction}>
+                <Pressable style={styles.subUDiction} onPress={handlePress}>
                     <Image
                         source={require('../image/translator.png')}
                         style={{ width: 25, height: 25, marginTop: 10, marginLeft: 5}}
@@ -97,7 +101,7 @@ function Home({navigation}) {
                             color: 'white'
                         }}>Đoạn thoại</Text>
                 </Pressable>
-                <Pressable style={styles.subUDiction}>
+                <Pressable style={styles.subUDiction} onPress={handlePress}>
                     <Image
                         source={require('../image/notes.png')}
                         style={{ width: 25, height: 25, marginTop: 10, marginLeft: 5}}
@@ -116,9 +120,6 @@ function Home({navigation}) {
                 </Pressable>
             </Pressable>
         </Pressable>
-    </View>
-    <View style={styles.options}>
-
     </View>
   </View>
 );
